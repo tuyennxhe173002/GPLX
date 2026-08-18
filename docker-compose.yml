@@ -1,4 +1,23 @@
 services:
+  backend:
+    image: maven:3.9.9-eclipse-temurin-21
+    container_name: gplx-backend
+    working_dir: /app
+    command: mvn spring-boot:run
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/gplx
+      SPRING_DATASOURCE_USERNAME: gplx
+      SPRING_DATASOURCE_PASSWORD: gplx
+      APP_CORS_ALLOWED_ORIGIN: http://localhost:5173
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
+      - maven_cache:/root/.m2
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   postgres:
     image: postgres:16-alpine
     container_name: gplx-postgres
@@ -19,3 +38,4 @@ services:
 
 volumes:
   postgres_data:
+  maven_cache:

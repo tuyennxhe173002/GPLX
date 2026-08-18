@@ -12,18 +12,27 @@ docker compose up -d postgres
 
 Docker Desktop must be running before using Docker commands on Windows.
 
-Start backend:
+Start backend without installing Java/Maven locally:
 
 ```bash
-cd backend
-./mvnw spring-boot:run
+docker compose up backend
 ```
 
-Neu khong co Maven Wrapper, dung Maven local:
+The command above is recommended on Windows when `mvn` is not recognized.
+
+Start backend with Maven local if Java 21 and Maven are installed:
 
 ```bash
 cd backend
 mvn spring-boot:run
+```
+
+PowerShell note: if a Maven Wrapper is added later, run it as `./mvnw.cmd` or `./mvnw`, not `mvnw`.
+
+Check backend health:
+
+```bash
+curl http://localhost:8080/api/health
 ```
 
 Start frontend:
