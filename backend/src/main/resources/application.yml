@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: gplx
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/gplx}
+    username: ${SPRING_DATASOURCE_USERNAME:gplx}
+    password: ${SPRING_DATASOURCE_PASSWORD:gplx}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: ${SERVER_PORT:8080}
+
+app:
+  cors:
+    allowed-origin: ${APP_CORS_ALLOWED_ORIGIN:http://localhost:5173}
