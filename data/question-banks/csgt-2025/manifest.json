@@ -1,0 +1,11 @@
+{
+  "bankCode": "CSGT-600-2025",
+  "version": "2025.06",
+  "questionCount": 600,
+  "criticalQuestionCount": 60,
+  "source": "Cuc Canh sat giao thong",
+  "effectiveFrom": "2025-06-01",
+  "chaptersFile": "chapters.json",
+  "questionsFile": "questions.json",
+  "animationsFile": "animations.json"
+}

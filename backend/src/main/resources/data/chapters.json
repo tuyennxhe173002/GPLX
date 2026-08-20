@@ -1,0 +1,44 @@
+[
+  {
+    "code": "CONCEPT_RULES",
+    "name": "Khai niem va quy tac giao thong",
+    "description": "Khai niem co ban va quy tac tham gia giao thong duong bo.",
+    "sortOrder": 1
+  },
+  {
+    "code": "TRANSPORT_OPERATION",
+    "name": "Nghiep vu van tai",
+    "description": "Kien thuc ve nghiep vu van tai va kinh doanh van tai.",
+    "sortOrder": 2
+  },
+  {
+    "code": "CULTURE_ETHICS",
+    "name": "Van hoa giao thong va dao duc nguoi lai xe",
+    "description": "Van hoa ung xu, dao duc nghe nghiep va phong chong tac hai ruou bia.",
+    "sortOrder": 3
+  },
+  {
+    "code": "DRIVING_TECHNIQUE",
+    "name": "Ky thuat lai xe",
+    "description": "Ky thuat dieu khien xe va xu ly tinh huong.",
+    "sortOrder": 4
+  },
+  {
+    "code": "VEHICLE_STRUCTURE",
+    "name": "Cau tao va sua chua xe",
+    "description": "Kien thuc co ban ve cau tao, bao duong va sua chua xe.",
+    "sortOrder": 5
+  },
+  {
+    "code": "ROAD_SIGNS",
+    "name": "He thong bien bao duong bo",
+    "description": "Bien bao cam, nguy hiem, hieu lenh, chi dan va bien phu.",
+    "sortOrder": 6
+  },
+  {
+    "code": "SA_HINH",
+    "name": "Sa hinh va xu ly tinh huong",
+    "description": "Thu tu xe di, tinh huong giao nhau va quy tac uu tien.",
+    "sortOrder": 7
+  }
+]

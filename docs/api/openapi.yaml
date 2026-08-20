@@ -1,0 +1,875 @@
+openapi: 3.0.3
+info:
+  title: GPLX API
+  version: 1.0.0
+  description: >-
+    Skeleton OpenAPI for the GPLX modular monolith. Question read APIs do not expose
+    correctness or explanation data. Practice grading APIs expose result data only after submit.
+servers:
+  - url: /api/v1
+security:
+  - bearerAuth: []
+tags:
+  - name: Chapters
+  - name: Questions
+  - name: Exam Profiles
+  - name: Practice
+  - name: Animations
+  - name: Exams
+  - name: Progress
+  - name: Bookmarks
+  - name: Auth
+paths:
+  /chapters:
+    get:
+      security: []
+      tags: [Chapters]
+      summary: List chapters
+      operationId: listChapters
+      responses:
+        '200':
+          description: Chapter list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChapterResponse'
+              examples:
+                default:
+                  value:
+                    - id: 1
+                      code: GENERAL
+                      name: Khai niem va quy tac
+                      description: Cac cau hoi nen tang
+                      sortOrder: 1
+  /questions:
+    get:
+      security: []
+      tags: [Questions]
+      summary: List practice questions
+      operationId: listQuestions
+      parameters:
+        - in: query
+          name: chapterId
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - in: query
+          name: size
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: Paged practice questions without correctness metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PracticeQuestionPage'
+  /questions/{id}:
+    get:
+      security: []
+      tags: [Questions]
+      summary: Get practice question by id
+      operationId: getQuestionById
+      parameters:
+        - $ref: '#/components/parameters/QuestionResourceIdPath'
+      responses:
+        '200':
+          description: Practice question
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PracticeQuestionResponse'
+              examples:
+                trafficScene:
+                  value:
+                    id: 501
+                    questionNumber: 501
+                    chapterId: 6
+                    chapterCode: SA_HINH
+                    content: Cac xe di theo huong mui ten, xe nao duoc di truoc?
+                    imageUrl: /assets/questions/501.webp
+                    questionType: TRAFFIC_SCENE
+                    isCritical: false
+                    answers:
+                      - id: 1001
+                        label: '1'
+                        content: Xe tai
+                        sortOrder: 1
+                      - id: 1002
+                        label: '2'
+                        content: Xe con
+                        sortOrder: 2
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /questions/random:
+    get:
+      security: []
+      tags: [Questions]
+      summary: Get random practice questions
+      operationId: getRandomQuestions
+      parameters:
+        - in: query
+          name: size
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: Random practice question list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PracticeQuestionResponse'
+  /questions/critical:
+    get:
+      security: []
+      tags: [Questions]
+      summary: Get critical practice questions
+      operationId: getCriticalQuestions
+      responses:
+        '200':
+          description: Critical practice question list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PracticeQuestionResponse'
+  /exam-profiles:
+    get:
+      security: []
+      tags: [Exam Profiles]
+      summary: List active exam profiles
+      operationId: listExamProfiles
+      responses:
+        '200':
+          description: Active exam profiles for active question bank version
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExamProfileResponse'
+  /practice/answers:
+    post:
+      security:
+        - bearerAuth: []
+        - {}
+      tags: [Practice]
+      summary: Submit a practice answer
+      operationId: submitPracticeAnswer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitPracticeAnswerRequest'
+            examples:
+              default:
+                value:
+                  questionId: 501
+                  answerId: 1001
+      responses:
+        '200':
+          description: Practice answer graded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PracticeAnswerResult'
+              examples:
+                correct:
+                  value:
+                    questionId: 501
+                    selectedAnswerId: 1001
+                    correct: true
+                    correctAnswerIds: [1001]
+                    explanation: Xe nay duoc di truoc theo thu tu uu tien.
+                    animation:
+                      available: true
+                      attemptId: 901
+                      animationId: 21
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /practice/attempts/{attemptId}/animation:
+    get:
+      security: []
+      tags: [Animations]
+      summary: Get explanation animation for a graded practice attempt
+      operationId: getPracticeAttemptAnimation
+      parameters:
+        - $ref: '#/components/parameters/AttemptIdPath'
+      responses:
+        '200':
+          description: Explanation animation payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimationResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /exams:
+    post:
+      security: []
+      tags: [Exams]
+      summary: Create exam session
+      operationId: createExamSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExamRequest'
+            examples:
+              default:
+                value:
+                  profileCode: B
+      responses:
+        '200':
+          description: Exam session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamSessionResponse'
+  /exams/{examId}:
+    get:
+      security: []
+      tags: [Exams]
+      summary: Get exam session
+      operationId: getExamSession
+      parameters:
+        - $ref: '#/components/parameters/ExamIdPath'
+      responses:
+        '200':
+          description: Exam session detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamSessionResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /exams/{examId}/answers/{questionId}:
+    put:
+      security: []
+      tags: [Exams]
+      summary: Save exam answer
+      operationId: saveExamAnswer
+      parameters:
+        - $ref: '#/components/parameters/ExamIdPath'
+        - $ref: '#/components/parameters/QuestionIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveExamAnswerRequest'
+      responses:
+        '200':
+          description: Answer saved without correctness feedback
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveExamAnswerResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /exams/{examId}/submit:
+    post:
+      security: []
+      tags: [Exams]
+      summary: Submit exam session
+      operationId: submitExamSession
+      parameters:
+        - $ref: '#/components/parameters/ExamIdPath'
+      responses:
+        '200':
+          description: Exam submitted and graded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamResultResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /exams/{examId}/result:
+    get:
+      security: []
+      tags: [Exams]
+      summary: Get exam result
+      operationId: getExamResult
+      parameters:
+        - $ref: '#/components/parameters/ExamIdPath'
+      responses:
+        '200':
+          description: Exam result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamResultResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /me/progress:
+    get:
+      tags: [Progress]
+      summary: Get user progress summary
+      operationId: getProgressSummary
+      responses:
+        '200':
+          description: Progress summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgressSummaryResponse'
+  /me/progress/chapters:
+    get:
+      tags: [Progress]
+      summary: Get user progress by chapter
+      operationId: getChapterProgress
+      responses:
+        '200':
+          description: Progress grouped by chapter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChapterProgressResponse'
+  /me/wrong-questions:
+    get:
+      tags: [Progress]
+      summary: Get wrong questions
+      operationId: getWrongQuestions
+      responses:
+        '200':
+          description: Wrong question list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PracticeQuestionResponse'
+  /me/bookmarks:
+    get:
+      tags: [Bookmarks]
+      summary: List bookmarked questions
+      operationId: listBookmarks
+      responses:
+        '200':
+          description: Bookmark list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PracticeQuestionResponse'
+  /me/bookmarks/{questionId}:
+    post:
+      tags: [Bookmarks]
+      summary: Bookmark question
+      operationId: createBookmark
+      parameters:
+        - $ref: '#/components/parameters/QuestionIdPath'
+      responses:
+        '200':
+          description: Question bookmarked
+    delete:
+      tags: [Bookmarks]
+      summary: Remove bookmark
+      operationId: deleteBookmark
+      parameters:
+        - $ref: '#/components/parameters/QuestionIdPath'
+      responses:
+        '204':
+          description: Bookmark removed
+  /auth/register:
+    post:
+      security: []
+      tags: [Auth]
+      summary: Register user
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '200':
+          description: Registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /auth/login:
+    post:
+      security: []
+      tags: [Auth]
+      summary: Login user
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /auth/refresh:
+    post:
+      security: []
+      tags: [Auth]
+      summary: Refresh auth token
+      operationId: refreshToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: Refreshed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+components:
+  parameters:
+    QuestionResourceIdPath:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
+        format: int64
+    QuestionIdPath:
+      in: path
+      name: questionId
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ExamIdPath:
+      in: path
+      name: examId
+      required: true
+      schema:
+        type: integer
+        format: int64
+    AttemptIdPath:
+      in: path
+      name: attemptId
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    BadRequestResponse:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            default:
+              value:
+                status: 400
+                error: Bad Request
+                message: Answer does not belong to question
+    NotFoundResponse:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            default:
+              value:
+                status: 404
+                error: Not Found
+                message: Question not found
+  schemas:
+    ChapterResponse:
+      type: object
+      required: [id, code, name, sortOrder]
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        sortOrder:
+          type: integer
+    AnswerResponse:
+      type: object
+      required: [id, label, content, sortOrder]
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+        content:
+          type: string
+        sortOrder:
+          type: integer
+    PracticeQuestionResponse:
+      type: object
+      required:
+        [id, questionNumber, chapterId, chapterCode, content, questionType, isCritical, answers]
+      properties:
+        id:
+          type: integer
+          format: int64
+        questionNumber:
+          type: integer
+        chapterId:
+          type: integer
+          format: int64
+        chapterCode:
+          type: string
+        content:
+          type: string
+        imageUrl:
+          type: string
+          nullable: true
+        questionType:
+          type: string
+          enum: [TEXT, IMAGE, TRAFFIC_SCENE, SIGN]
+        isCritical:
+          type: boolean
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerResponse'
+    PracticeQuestionPage:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PracticeQuestionResponse'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        size:
+          type: integer
+        number:
+          type: integer
+        first:
+          type: boolean
+        last:
+          type: boolean
+        empty:
+          type: boolean
+    SubmitPracticeAnswerRequest:
+      type: object
+      required: [questionId, answerId]
+      properties:
+        questionId:
+          type: integer
+          format: int64
+        answerId:
+          type: integer
+          format: int64
+    PracticeAnswerAnimationResponse:
+      type: object
+      required: [available, attemptId]
+      properties:
+        available:
+          type: boolean
+        attemptId:
+          type: integer
+          format: int64
+        animationId:
+          type: integer
+          format: int64
+          nullable: true
+    PracticeAnswerResult:
+      type: object
+      required:
+        [questionId, selectedAnswerId, correct, correctAnswerIds, explanation, animation]
+      properties:
+        questionId:
+          type: integer
+          format: int64
+        selectedAnswerId:
+          type: integer
+          format: int64
+        correct:
+          type: boolean
+        correctAnswerIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        explanation:
+          type: string
+        animation:
+          $ref: '#/components/schemas/PracticeAnswerAnimationResponse'
+    AnimationResponse:
+      type: object
+      required: [id, questionId, sceneWidth, sceneHeight, durationMs, animationData]
+      properties:
+        id:
+          type: integer
+          format: int64
+        questionId:
+          type: integer
+          format: int64
+        sceneWidth:
+          type: integer
+        sceneHeight:
+          type: integer
+        backgroundImageUrl:
+          type: string
+          nullable: true
+        durationMs:
+          type: integer
+        animationData:
+          type: object
+          additionalProperties: true
+    SaveExamAnswerRequest:
+      type: object
+      required: [answerId]
+      properties:
+        answerId:
+          type: integer
+          format: int64
+    RegisterRequest:
+      type: object
+      required: [email, password, fullName]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        fullName:
+          type: string
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    RefreshTokenRequest:
+      type: object
+      required: [refreshToken]
+      properties:
+        refreshToken:
+          type: string
+    AuthUserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+          format: email
+        fullName:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        tokenType:
+          type: string
+        expiresIn:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/AuthUserResponse'
+    CreateExamRequest:
+      type: object
+      required: [profileCode]
+      properties:
+        profileCode:
+          type: string
+    SaveExamAnswerResponse:
+      type: object
+      required: [saved]
+      properties:
+        saved:
+          type: boolean
+    ExamProfileResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        profileCode:
+          type: string
+        displayName:
+          type: string
+        questionCount:
+          type: integer
+        durationMinutes:
+          type: integer
+        passingScore:
+          type: integer
+        criticalFailEnabled:
+          type: boolean
+        criticalQuestionCount:
+          type: integer
+    ExamQuestionResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        questionNumber:
+          type: integer
+        content:
+          type: string
+        imageUrl:
+          type: string
+          nullable: true
+        questionType:
+          type: string
+          enum: [TEXT, IMAGE, TRAFFIC_SCENE, SIGN]
+        isCritical:
+          type: boolean
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerResponse'
+    ExamSessionResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        profileCode:
+          type: string
+        state:
+          type: string
+          enum: [CREATED, IN_PROGRESS, SUBMITTED, EXPIRED]
+        startedAt:
+          type: string
+          format: date-time
+        expiresAt:
+          type: string
+          format: date-time
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExamQuestionResponse'
+    ExamResultQuestionResponse:
+      type: object
+      properties:
+        questionId:
+          type: integer
+          format: int64
+        selectedAnswerId:
+          type: integer
+          format: int64
+          nullable: true
+        correctAnswerIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        correct:
+          type: boolean
+        explanation:
+          type: string
+    ExamResultResponse:
+      type: object
+      properties:
+        examId:
+          type: integer
+          format: int64
+        state:
+          type: string
+          enum: [SUBMITTED, EXPIRED]
+        score:
+          type: integer
+        passed:
+          type: boolean
+        criticalWrongCount:
+          type: integer
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExamResultQuestionResponse'
+    ProgressSummaryResponse:
+      type: object
+      properties:
+        totalQuestions:
+          type: integer
+        attemptedQuestions:
+          type: integer
+        correctAttempts:
+          type: integer
+        wrongAttempts:
+          type: integer
+        masteryScore:
+          type: number
+          format: double
+    ChapterProgressResponse:
+      type: object
+      properties:
+        chapterId:
+          type: integer
+          format: int64
+        chapterCode:
+          type: string
+        totalQuestions:
+          type: integer
+        attemptedQuestions:
+          type: integer
+        correctAttempts:
+          type: integer
+        wrongAttempts:
+          type: integer
+    ErrorResponse:
+      type: object
+      required: [status, error, message]
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

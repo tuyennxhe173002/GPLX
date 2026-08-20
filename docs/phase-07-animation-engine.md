@@ -1,53 +1,106 @@
-# Phase 7 - Animation Engine MVP
+# Phase 7 - Explanation Animation Contract And Engine
 
 ## Objective
 
-Hien thi xe chuyen dong theo JSON animation cho cau sa hinh.
+Chot schema animation explanation va xay reusable engine cho cac cau sa hinh ma khong leak dap an truoc luc user xem ket qua.
 
-## Frontend Types
+## Backend Access Rule
+
+- Practice mode: animation explanation chi duoc lay sau `POST /api/v1/practice/answers`.
+- Exam mode: animation explanation chi duoc lay sau khi exam `SUBMITTED` hoac `EXPIRED`.
+- Khong dung `GET /api/v1/questions/{id}/animation` de tra explanation animation truoc.
+
+## Frontend Engine State
 
 ```ts
-export type Point = { x: number; y: number };
+export type AnimationState = "idle" | "playing" | "paused" | "ended";
+```
 
-export type VehicleAnimation = {
-  id: string;
-  type: "car" | "truck" | "bus" | "motorbike";
-  label: string;
-  start: { x: number; y: number; rotation: number };
-  path: Point[];
-  startTimeMs: number;
-  durationMs: number;
-  isCorrect: boolean;
-};
+## Animation JSON Contract
 
-export type ExplanationAnimationData = {
-  vehicles: VehicleAnimation[];
-  steps: Array<{
-    timeMs: number;
-    title?: string;
-    description: string;
-    vehicleId?: string;
-  }>;
-  correctVehicleIds: string[];
-};
+```json
+{
+  "schemaVersion": 1,
+  "viewport": {
+    "width": 1200,
+    "height": 800
+  },
+  "durationMs": 8000,
+  "background": {
+    "image": "/assets/scenes/q501.svg"
+  },
+  "actors": [
+    {
+      "id": "car-red",
+      "type": "VEHICLE",
+      "asset": "/assets/vehicles/car-red.svg",
+      "width": 90,
+      "height": 45,
+      "initial": {
+        "x": 300,
+        "y": 500,
+        "rotation": -90
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "actorId": "car-red",
+      "keyframes": [
+        {
+          "timeMs": 0,
+          "x": 300,
+          "y": 500,
+          "rotation": -90
+        },
+        {
+          "timeMs": 2500,
+          "x": 300,
+          "y": 350,
+          "rotation": -90
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "timeMs": 3000,
+      "type": "HIGHLIGHT",
+      "target": "car-red"
+    },
+    {
+      "timeMs": 3500,
+      "type": "SHOW_LABEL",
+      "text": "Xe nay duoc quyen di truoc"
+    }
+  ]
+}
 ```
 
 ## Tasks
 
-1. Backend tao entity `ExplanationAnimation`.
-2. Backend tao API `GET /api/questions/{id}/animation`.
-3. Frontend tao `AnimatedScene`.
-4. Frontend tao `VehicleSprite`.
-5. Frontend tao `useScenePlayer`.
-6. Implement Play, Pause, Replay, Speed.
-7. Implement path interpolation.
-8. Tinh rotation theo huong di giua 2 diem.
-9. Highlight xe dung.
-10. Hien timeline step tuong ung current time.
+Backend implementation phai tuan thu `docs/backend-monolith-structure.md`.
+
+1. Backend tao entity `ExplanationAnimation` trong `animation/entity`.
+2. Backend tao repository trong `animation/repository`.
+3. Backend tao DTO response trong `animation/dto/response`.
+4. Backend tao validator schema trong `animation/validation`.
+5. Backend tao service interface trong `animation/service`.
+6. Backend tao service implementation trong `animation/service/impl`.
+7. Backend tao API lay animation tu practice attempt hoac exam result, khong lay truc tiep tu question.
+8. Frontend tao `TrafficScene`.
+9. Frontend tao `AnimationControls`.
+10. Frontend tao `AnimationEngine`, `Timeline`, `interpolate` va schema types.
+11. Implement `play()`, `pause()`, `replay()`, `seek(ms)`, `setSpeed()`.
+12. Implement render bang SVG + `requestAnimationFrame`.
+13. Khong dung `setInterval(...)` cho animation loop.
+14. Khong buoc React rerender toan scene 60 lan/giay; cap nhat transform qua refs/engine.
+15. Implement event overlay cho highlight va label explanation.
 
 ## Success Criteria
 
-- Scene render duoc background.
-- Xe chay dung theo path.
-- Start time va duration tung xe duoc ton trong.
-- User co the replay animation.
+- Schema animation duoc chot va validate duoc.
+- Scene render duoc background, actor, track va explanation events.
+- Xe chay dung theo keyframes va duration.
+- User co the replay va doi toc do.
+- Backend khong leak explanation animation truoc khi cham bai.

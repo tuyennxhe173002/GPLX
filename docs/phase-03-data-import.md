@@ -1,38 +1,64 @@
-# Phase 3 - Data Import And Validation
+# Phase 3 - Question Bank Import And Validation
 
 ## Objective
 
-Import 600 cau hoi co dinh tu JSON vao PostgreSQL va validate data truoc khi app san sang phuc vu.
+Import question bank version vao PostgreSQL, validate integrity truoc khi app san sang phuc vu, va khong khoa chat quy trinh development vao dataset du 600 cau.
 
 ## Source Files
 
 ```text
-backend/src/main/resources/data/chapters.json
-backend/src/main/resources/data/questions.json
-backend/src/main/resources/data/animations.json
+data/question-banks/csgt-2025/manifest.json
+data/question-banks/csgt-2025/chapters.json
+data/question-banks/csgt-2025/questions.json
+data/question-banks/csgt-2025/animations.json
+data/question-banks/csgt-2025/assets/
+```
+
+## Required Manifest Contract
+
+```json
+{
+  "bankCode": "CSGT-600-2025",
+  "version": "2025.06",
+  "questionCount": 600,
+  "criticalQuestionCount": 60,
+  "source": "Cuc Canh sat giao thong",
+  "effectiveFrom": "2025-06-01"
+}
 ```
 
 ## Tasks
 
-1. Tao DTO `ChapterImportDto`.
-2. Tao DTO `QuestionImportDto`.
-3. Tao DTO `AnswerImportDto`.
-4. Tao DTO `AnimationImportDto`.
-5. Tao `DataImportRunner implements CommandLineRunner`.
-6. Them config `app.seed.enabled=true`.
-7. Neu `questionRepository.count() >= 600` thi skip import.
-8. Import chapters truoc.
-9. Import questions va answers.
-10. Import animations theo `questionNumber`.
-11. Validate co dung 600 cau.
-12. Validate question number tu 1 den 600 va khong trung.
-13. Validate moi cau co tu 2 den 4 dap an.
-14. Validate moi cau co dung 1 dap an dung.
-15. Validate chapter code hop le.
-16. Validate `hasAnimation=true` thi ton tai animation.
+Backend implementation phai tuan thu `docs/backend-monolith-structure.md`.
+
+1. Tao import DTO trong `seed/dto` cho manifest, chapter, question, answer va animation payload.
+2. Tao `QuestionBankValidationMode` trong `seed` hoac `seed/validation` voi it nhat `FULL` va `PARTIAL`.
+3. Tao `DataImportService` interface trong `seed/service`.
+4. Tao `DataImportServiceImpl` trong `seed/service/impl`.
+5. Tao validator trong `seed/validation` cho manifest, question bank va animation reference.
+6. Tao `DataImportRunner implements CommandLineRunner` trong `seed/runner` va chi goi service.
+7. Them config:
+
+```yaml
+app:
+  seed:
+    enabled: true
+    validation-mode: FULL
+```
+
+8. Them bang `question_bank_versions` va import/lookup bank version truoc.
+9. Import chapters theo `question_bank_version_id`.
+10. Import questions va answers theo bank version.
+11. Import animations theo `questionNumber` trong bank version do.
+12. Neu dataset va bank version da ton tai day du thi skip import an toan.
+13. Validate `FULL`: dung `questionCount` trong manifest, numbering day du, critical count dung, du animation cho question `hasAnimation=true`.
+14. Validate `PARTIAL`: cho phep tap con, nhung van phai validate uniqueness, answer count, correct answer count, chapter code va reference consistency.
+15. Bao loi start-up neu validation fail.
 
 ## Success Criteria
 
 - App dung start neu data loi.
 - App start thanh cong neu data hop le.
-- Database co du 600 cau sau import.
+- Seed co the chay voi dataset `FULL` va `PARTIAL`.
+- Question bank duoc version hoa, khong coi 600 cau la tap du lieu vinh vien.
+- Runner khong chua business logic lon; logic import/validate nam trong service + validator.

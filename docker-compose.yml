@@ -9,6 +9,7 @@ services:
       SPRING_DATASOURCE_USERNAME: gplx
       SPRING_DATASOURCE_PASSWORD: gplx
       APP_CORS_ALLOWED_ORIGIN: http://localhost:5173
+      APP_SEED_ENABLED: ${APP_SEED_ENABLED:-false}
     ports:
       - "8080:8080"
     volumes:

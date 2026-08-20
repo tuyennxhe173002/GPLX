@@ -1,0 +1,29 @@
+[
+  {
+    "questionNumber": 1,
+    "chapterCode": "CONCEPT_RULES",
+    "content": "Phan cua duong bo duoc su dung cho cac phuong tien giao thong qua lai la gi?",
+    "imageUrl": null,
+    "questionType": "TEXT",
+    "isCritical": false,
+    "hasAnimation": false,
+    "answers": [
+      {
+        "label": "1",
+        "content": "Phan mat duong va le duong.",
+        "isCorrect": false
+      },
+      {
+        "label": "2",
+        "content": "Phan duong xe chay.",
+        "isCorrect": true
+      },
+      {
+        "label": "3",
+        "content": "Phan duong danh cho xe co gioi.",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Phan duong xe chay la phan cua duong bo duoc su dung cho phuong tien giao thong qua lai."
+  }
+]
