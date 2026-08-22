@@ -18,6 +18,7 @@ import com.example.gplx.exam.repository.ExamSessionAnswerRepository;
 import com.example.gplx.exam.repository.ExamSessionQuestionRepository;
 import com.example.gplx.exam.repository.ExamSessionRepository;
 import com.example.gplx.exam.repository.LicenseExamProfileRepository;
+import com.example.gplx.exam.service.ExamService;
 import com.example.gplx.common.exception.ApiException;
 import com.example.gplx.question.dto.response.AnswerResponse;
 import com.example.gplx.question.entity.Answer;

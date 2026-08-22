@@ -1,10 +1,12 @@
 spring:
   application:
     name: gplx
+  profiles:
+    default: local
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/gplx}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5433/gplx}
     username: ${SPRING_DATASOURCE_USERNAME:gplx}
     password: ${SPRING_DATASOURCE_PASSWORD:gplx}
   jpa:

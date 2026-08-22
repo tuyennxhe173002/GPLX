@@ -12,6 +12,7 @@ public record PracticeQuestionResponse(
         String imageUrl,
         QuestionType questionType,
         Boolean isCritical,
+        String explanation,
         List<AnswerResponse> answers
 ) {
 }

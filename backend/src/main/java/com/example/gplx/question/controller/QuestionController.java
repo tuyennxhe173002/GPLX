@@ -29,7 +29,7 @@ public class QuestionController {
     public Page<PracticeQuestionResponse> getQuestions(
             @RequestParam(required = false) Long chapterId,
             @RequestParam(defaultValue = "0") @Min(0) int page,
-            @RequestParam(defaultValue = "20") @Min(1) @Max(100) int size
+            @RequestParam(defaultValue = "20") @Min(1) @Max(600) int size
     ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("questionNumber").ascending());
         return questionService.getQuestions(chapterId, pageable);
@@ -38,6 +38,11 @@ public class QuestionController {
     @GetMapping("/{id}")
     public PracticeQuestionResponse getQuestion(@PathVariable Long id) {
         return questionService.getQuestion(id);
+    }
+
+    @GetMapping("/number/{questionNumber}")
+    public PracticeQuestionResponse getQuestionByNumber(@PathVariable Integer questionNumber) {
+        return questionService.getQuestionByNumber(questionNumber);
     }
 
     @GetMapping("/random")

@@ -9,7 +9,11 @@ import { ExamResultPage } from "../pages/ExamResultPage";
 import { ExamSessionPage } from "../pages/ExamSessionPage";
 import { ExamSetupPage } from "../pages/ExamSetupPage";
 import { HomePage } from "../pages/HomePage";
+import { MnemonicsPage } from "../pages/MnemonicsPage";
+import { MnemonicDetailPage } from "../pages/MnemonicDetailPage";
 import { RandomPracticePage } from "../pages/RandomPracticePage";
+import { TheoryPage } from "../pages/TheoryPage";
+import { WrongQuestionsPage } from "../pages/WrongQuestionsPage";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +22,43 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <TheoryPage />,
+      },
+      {
+        path: "home",
         element: <HomePage />,
+      },
+      {
+        path: "theory",
+        element: <TheoryPage />,
+      },
+      {
+        path: "theory/600-cau",
+        element: <ChaptersPage />,
+      },
+      {
+        path: "theory/theo-chuong",
+        element: <ChaptersPage />,
+      },
+      {
+        path: "theory/cau-diem-liet",
+        element: <CriticalPracticePage />,
+      },
+      {
+        path: "theory/exam",
+        element: <ExamSetupPage />,
+      },
+      {
+        path: "mnemonics",
+        element: <MnemonicsPage />,
+      },
+      {
+        path: "mnemonics/:id",
+        element: <MnemonicDetailPage />,
+      },
+      {
+        path: "tip-details/:id",
+        element: <MnemonicDetailPage />,
       },
       {
         path: "auth",
@@ -27,6 +67,10 @@ export const router = createBrowserRouter([
       {
         path: "bookmarks",
         element: <BookmarksPage />,
+      },
+      {
+        path: "wrong-questions",
+        element: <WrongQuestionsPage />,
       },
       {
         path: "chapters",
@@ -45,8 +89,20 @@ export const router = createBrowserRouter([
         element: <CriticalPracticePage />,
       },
       {
+        path: "theory/thi-theo-de",
+        element: <ExamSetupPage />,
+      },
+      {
+        path: "theory/exam/:license/:examId",
+        element: <ExamSessionPage />,
+      },
+      {
         path: "exam",
         element: <ExamSetupPage />,
+      },
+      {
+        path: "exam/:license/:examId",
+        element: <ExamSessionPage />,
       },
       {
         path: "exam/:sessionId",
@@ -59,3 +115,5 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+
+

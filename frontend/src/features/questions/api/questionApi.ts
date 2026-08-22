@@ -10,6 +10,10 @@ export function getQuestion(id: number) {
   return apiGet<PracticeQuestion>(`/api/v1/questions/${id}`);
 }
 
+export function getQuestionByNumber(questionNumber: number) {
+  return apiGet<PracticeQuestion>(`/api/v1/questions/number/${questionNumber}`);
+}
+
 export function getRandomQuestions(size = 20) {
   return apiGet<PracticeQuestion[]>("/api/v1/questions/random", { size });
 }

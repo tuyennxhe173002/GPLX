@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.example.gplx.auth.security.JwtService;
 import com.example.gplx.common.exception.GlobalExceptionHandler;
 import com.example.gplx.exam.dto.request.SaveExamAnswerRequest;
 import com.example.gplx.exam.dto.response.ExamResultQuestionResponse;
@@ -37,6 +38,9 @@ class ExamControllerWebMvcTest {
 
     @MockBean
     private ExamService examService;
+
+    @MockBean
+    private JwtService jwtService;
 
     @Test
     void saveAnswerDoesNotLeakCorrectnessBeforeSubmit() throws Exception {

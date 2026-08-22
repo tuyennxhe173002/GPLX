@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.example.gplx.auth.security.JwtService;
 import com.example.gplx.animation.service.AnimationService;
 import com.example.gplx.common.exception.ApiException;
 import com.example.gplx.common.exception.GlobalExceptionHandler;
@@ -26,6 +27,9 @@ class AnimationControllerWebMvcTest {
 
     @MockBean
     private AnimationService animationService;
+
+    @MockBean
+    private JwtService jwtService;
 
     @Test
     void getAnimationRejectsWhenAttemptCannotAccessExplanation() throws Exception {

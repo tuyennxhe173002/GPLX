@@ -21,6 +21,7 @@ public class QuestionMapper {
                 question.getImageUrl(),
                 question.getQuestionType(),
                 question.getIsCritical(),
+                question.getExplanation(),
                 answers
         );
     }

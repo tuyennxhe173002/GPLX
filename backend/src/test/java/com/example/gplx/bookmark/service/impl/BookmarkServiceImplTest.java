@@ -67,7 +67,7 @@ class BookmarkServiceImplTest {
         Bookmark oldBookmark = new Bookmark();
         oldBookmark.setQuestion(oldQuestion);
 
-        PracticeQuestionResponse response = new PracticeQuestionResponse(10L, 1, 1L, "RULES", "Content", null, null, false, List.of());
+        PracticeQuestionResponse response = new PracticeQuestionResponse(10L, 1, 1L, "RULES", "Content", null, null, false, "Explanation", List.of());
 
         when(questionBankVersionService.getActiveQuestionBankVersion()).thenReturn(activeVersion);
         when(bookmarkRepository.findByUserIdOrderByCreatedAtDesc(99L)).thenReturn(List.of(activeBookmark, oldBookmark));

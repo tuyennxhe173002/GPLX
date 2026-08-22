@@ -1,0 +1,1500 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "title": "MẸO PHẦN CHỮ",
+      "color": "#357f7a",
+      "tips": [
+        {
+          "id": "page-1-tip-1",
+          "type": "table",
+          "text": "RÁP CỤM TỪ TRÊN CÂU HỎI VỚI ĐÁP ÁN",
+          "rules": [
+            {
+              "question": "Phần của đường bộ",
+              "answer": "Phần đường xe chạy"
+            },
+            {
+              "question": "Làn đường",
+              "answer": "Có đủ chiều rộng cho xe chạy an toàn"
+            },
+            {
+              "question": "Khổ giới hạn",
+              "answer": "Giới hạn về chiều cao, chiều rộng"
+            },
+            {
+              "question": "Dải phân cách",
+              "answer": "Để phân chia phần đường xe chạy thành hai chiều riêng biệt"
+            },
+            {
+              "question": "Vạch kẻ đường",
+              "answer": "Phân chia làn đường"
+            },
+            {
+              "question": "Xe cơ giới, xe thô sơ",
+              "answer": "Xe tương tự"
+            },
+            {
+              "question": "Giao thông đường bộ gồm",
+              "answer": "Cả hai ý trên (đáp án 3. Cả...)"
+            },
+            {
+              "question": "Chức năng đường bộ",
+              "answer": "Đường bên và đường nội bộ"
+            },
+            {
+              "question": "Có bao nhiêu nhóm biển báo",
+              "answer": "Năm nhóm"
+            }
+          ],
+          "exampleQuestions": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            8,
+            9,
+            10,
+            11,
+            12,
+            18,
+            33
+          ]
+        },
+        {
+          "id": "page-1-tip-2",
+          "text": "CHỌN NHANH TỪ KHÓA LIÊN QUAN ĐẾN KHÁI NIỆM",
+          "description": "\n            <p>Câu hỏi khái niệm, nếu trong câu hỏi có chữ:</p>\n            <p>\n                <span class=\"tip-pill\">Người lái xe - thô sơ - khổ</span>\n                <span class=\"tip-arrow\">⇨</span> Chọn <span class=\"tip-red\">ý 1</span>\n            </p>\n            <p>\n                <span class=\"tip-pill\">Dừng - đỗ - phần - làn - cơ giới</span>\n                <span class=\"tip-arrow\">⇨</span> Chọn <span class=\"tip-red\">ý 2</span>\n            </p>\n        ",
+          "exampleQuestions": [
+            1,
+            2,
+            3,
+            7,
+            8,
+            9,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "page-2-tip-3",
+          "text": "CÓ TỪ “HÀNH VI” Ở ĐẦU CÂU HỎI",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <p>Đối với câu hỏi có từ <span class=\"tip-pill\">Hành vi...</span> nằm ở đầu câu hỏi ⇨ <span class=\"tip-red\">Chọn ngay đáp án cuối cùng là đúng</span></p>\n                    <p>☒ Ngoại trừ <span class=\"tip-red\">câu 19</span> ⇨ Chọn <span class=\"tip-red\">đáp án 2</span> (Rải vật sắc nhọn...)</p>\n                    <div class=\"tip-example-box\">\n                        <p class=\"tip-question-title\">Câu 19. Hành vi nào dưới đây bị nghiêm cấm?</p>\n                        <p>1. Sử dụng xe đạp đi trên các tuyến quốc lộ.</p>\n                        <p><span class=\"tip-answer-circle\">2.</span> Rải vật sắc nhọn, đổ chất gây trơn trượt trên đường bộ.</p>\n                        <p>3. Cả hai ý trên.</p>\n                    </div>\n                "
+            }
+          ],
+          "exampleQuestions": [
+            20,
+            22,
+            23,
+            25,
+            27,
+            28,
+            30,
+            197
+          ]
+        },
+        {
+          "id": "page-2-tip-4",
+          "text": "CHỌN NHANH TỪ KHÓA “BỊ NGHIÊM CẤM”, “KHÔNG ĐƯỢC PHÉP”",
+          "description": "Đáp án có từ khóa <span class=\"tip-pill\">Bị nghiêm cấm</span>, <span class=\"tip-pill\">Không được phép</span> luôn là đáp án đúng.",
+          "exampleQuestions": [
+            24,
+            31,
+            47,
+            63,
+            67,
+            74,
+            197
+          ]
+        },
+        {
+          "id": "page-2-tip-5",
+          "text": "CHỌN NHANH KHI THẤY TỪ “QUAN SÁT...” Ở ĐẦU CÂU HỎI",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <p>Khi gặp câu hỏi có <strong>2 hoặc 3 đáp án</strong> có từ <span class=\"tip-pill\">Quan sát</span> ở đầu câu ⇨ <span class=\"tip-red\">Chọn ngay đáp án dài nhất.</span></p>\n                    <p>☒ Ngoại trừ <span class=\"tip-red\">câu 253</span> ⇨ Chọn <span class=\"tip-red\">Quan sát, giảm tốc độ</span></p>\n                    <div class=\"tip-example-box\">\n                        <p class=\"tip-question-title\">Câu 253. Khi đi từ đường nhánh ra đường chính, người lái xe phải xử lý như thế nào là đúng?</p>\n                        <p><span class=\"tip-answer-circle\">1.</span> <strong>Quan sát, giảm tốc độ</strong>, phát tín hiệu, nhường đường cho xe trên đường chính từ bất kỳ hướng nào tới.</p>\n                        <p>2. Nháy đèn, bấm còi để xe đi trên đường chính biết và tăng tốc độ cho xe đi ra đường chính.</p>\n                        <p>3. Quan sát xe đang đi trên đường chính, nếu là xe có kích thước lớn hơn thì nhường đường, xe có kích thước nhỏ hơn thì tăng tốc độ cho xe đi ra đường chính.</p>\n                "
+            }
+          ],
+          "exampleQuestions": [
+            34,
+            84,
+            210,
+            215,
+            246,
+            249,
+            256
+          ]
+        },
+        {
+          "id": "page-3-tip-6",
+          "text": "CHỌN NGAY KHI THẤY “4. CẢ...”, “4. Ý...”",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <p>Chọn ngay khi thấy đáp án: <span class=\"tip-pill\">4. Cả...</span>, <span class=\"tip-pill\">4. Ý...</span></p>\n                    <p>☒ Ngoại trừ <span class=\"tip-red\">câu 5, 123, 170, 204, 229</span></p>\n                "
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                5,
+                123,
+                170,
+                204,
+                229
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            27,
+            35,
+            56,
+            58,
+            66,
+            70,
+            88,
+            95,
+            102,
+            107,
+            117,
+            132,
+            138,
+            139,
+            165,
+            169,
+            173,
+            174,
+            175,
+            177,
+            194,
+            202,
+            205,
+            220,
+            251,
+            257,
+            258,
+            261,
+            262,
+            263,
+            267,
+            294
+          ]
+        },
+        {
+          "id": "page-4-tip-7",
+          "type": "table",
+          "text": "MẸO KHI GẶP CÂU HỎI VỀ CÒI, ĐÈN",
+          "tableTitle": "ĐÁP ÁN CHỨA CHỮ",
+          "rules": [
+            {
+              "category": "Câu hỏi về đèn"
+            },
+            {
+              "question": "Báo vượt 22h-5h",
+              "answer": "Chỉ sử dụng đèn"
+            },
+            {
+              "question": "Trong khu dân cư",
+              "answer": "Chỉ bật đèn cốt"
+            },
+            {
+              "question": "Xe tránh xe",
+              "answer": "Tắt pha, mở cốt, nhìn chếch sang phải"
+            },
+            {
+              "question": "Trời mưa to",
+              "answer": "Bật đèn cốt, đèn vàng"
+            },
+            {
+              "category": "Câu hỏi về còi"
+            },
+            {
+              "question": "Trong khu dân cư",
+              "answer": "Sử dụng 5h-22h"
+            },
+            {
+              "question": "Sử dụng còi",
+              "answer": "Chỉ sử dụng còi khi cần thiết"
+            }
+          ],
+          "exampleQuestions": [
+            49,
+            51,
+            80,
+            193,
+            225,
+            244
+          ]
+        },
+        {
+          "id": "page-5-tip-8",
+          "type": "table",
+          "text": "MẸO CÁC CON SỐ CẦN NHỚ",
+          "tableTitle": "ĐÁP ÁN CHỨA CHỮ",
+          "rules": [
+            {
+              "question": "Biển báo đường bộ",
+              "answer": "5 nhóm"
+            },
+            {
+              "question": "Được sử dụng còi",
+              "answer": "Từ 5 giờ đến 22 giờ"
+            },
+            {
+              "question": "Dừng, đỗ xe sát lề",
+              "answer": "Không quá 0,25 mét"
+            },
+            {
+              "question": "Cách xe đỗ ngược chiều",
+              "answer": "20 mét"
+            },
+            {
+              "question": "Lái xe liên tục",
+              "answer": "Không quá 4 giờ"
+            },
+            {
+              "question": "Trong một ngày",
+              "answer": "Không quá 10 giờ"
+            },
+            {
+              "question": "Tư thế tay",
+              "answer": "Tay trái 9 đến 10 giờ\nTay phải 2 đến 4 giờ"
+            },
+            {
+              "question": "Niên hạn ô tô tải",
+              "answer": "25 năm"
+            },
+            {
+              "question": "Niên hạn ô tô chở người",
+              "answer": "20 năm"
+            }
+          ],
+          "exampleQuestions": [
+            33,
+            49,
+            60,
+            61,
+            171,
+            172,
+            211,
+            277,
+            278
+          ]
+        },
+        {
+          "id": "page-5-tip-9",
+          "text": "MẸO CHỌN NHANH VỀ TUỔI VÀ HẠNG GIẤY PHÉP LÁI XE",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "<p class=\"tip-subhead\">1. Mẹo độ tuổi</p>"
+            },
+            {
+              "kind": "table",
+              "tableTitle": "TUỔI",
+              "rows": [
+                [
+                  "Hạng A1, A, B, C1",
+                  "18 tuổi"
+                ],
+                [
+                  "Hạng C",
+                  "21 tuổi"
+                ],
+                [
+                  "Hạng D1, D2, C1E, CE",
+                  "24 tuổi"
+                ],
+                [
+                  "Hạng D, DE",
+                  "27 tuổi"
+                ],
+                [
+                  "Tuổi tối đa",
+                  "Nam 57 - Nữ 55"
+                ]
+              ]
+            },
+            {
+              "kind": "note",
+              "text": "<p>□ <span class=\"tip-red\"><strong>Nhớ nhanh:</strong></span> Câu hỏi về độ tuổi ⇨ <span class=\"tip-red\">Nhìn 3 đáp án đầu chọn số lớn nhất</span></p><p class=\"tip-link-line\">☞ Xem từ câu 118 đến câu 122</p>"
+            },
+            {
+              "kind": "note",
+              "text": "<p class=\"tip-subhead\">2. Mẹo hạng giấy phép lái xe</p>"
+            },
+            {
+              "kind": "table",
+              "tableTitle": "HẠNG GPLX",
+              "rows": [
+                [
+                  "Hạng A1",
+                  "Đến 125 cm³"
+                ],
+                [
+                  "Hạng A",
+                  "Trên 125 cm³"
+                ],
+                [
+                  "Hạng B",
+                  "Đến 8 chỗ; tổng tải đến 3,5 tấn"
+                ],
+                [
+                  "Hạng C1",
+                  "Tổng tải đến 7,5 tấn"
+                ],
+                [
+                  "Hạng C",
+                  "Tổng tải trên 7,5 tấn"
+                ],
+                [
+                  "Hạng D1",
+                  "Đến 16 chỗ"
+                ],
+                [
+                  "Hạng D2",
+                  "Đến 29 chỗ"
+                ],
+                [
+                  "Hạng D",
+                  "Trên 29 chỗ"
+                ],
+                [
+                  "Hạng BE",
+                  "B kéo moóc"
+                ],
+                [
+                  "Hạng CE",
+                  "C kéo moóc"
+                ],
+                [
+                  "Hạng DE",
+                  "D kéo moóc"
+                ]
+              ]
+            },
+            {
+              "kind": "note",
+              "text": "\n                    <p>□ <span class=\"tip-red\"><strong>Nhớ nhanh:</strong></span> Câu hỏi về các hạng GPLX:</p>\n                    <p>✓ <span class=\"tip-pill\">Không có số (A, B, C, D)</span> ⇨ <span class=\"tip-red\">Chọn ý cuối</span></p>\n                    <p>✓ <span class=\"tip-pill\">Có số (A1, C1, D1, D2)</span> ⇨ <span class=\"tip-red\">Số + 1 = Đáp án (ngoại trừ câu 125)</span></p>\n                    <p>✓ <span class=\"tip-pill\">Có E (BE, CE, DE)</span> ⇨ <span class=\"tip-red\">Bỏ E (Chọn đáp án có hạng B, C, D)</span></p>\n                    <p>☒ Ngoại trừ <span class=\"tip-red\">câu 125</span> ⇨ Chọn <span class=\"tip-red\">đến 125 cm³, đến 11 kW</span></p>\n                "
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                125
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135
+          ]
+        },
+        {
+          "id": "page-7-tip-10",
+          "text": "MẸO CÂU HỎI CÓ LIÊN QUAN ĐẾN CẢNH SÁT GIAO THÔNG",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "<p class=\"tip-subhead\">CÂU HỎI PHẦN CHỮ CÓ HÌNH CSGT:</p><p>Thấy hình CSGT thì tùy thuộc vào CSGT giơ mấy tay.</p>"
+            },
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/csgt.png"
+            },
+            {
+              "kind": "note",
+              "text": "<p class=\"tip-subhead\">CÂU HỎI PHẦN SA HÌNH CÓ HÌNH CSGT:</p><p>Thấy hình CSGT thì chọn luôn <span class=\"tip-red\">đáp án 3</span> (không quan tâm CSGT giơ mấy tay).</p>"
+            }
+          ],
+          "exampleQuestions": [
+            36,
+            37,
+            528,
+            529
+          ]
+        },
+        {
+          "id": "page-7-tip-11",
+          "text": "MẸO TỐC ĐỘ TRONG VÀ NGOÀI KHU ĐÔNG DÂN CƯ",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <p class=\"tip-subhead\">CÁCH GHI NHỚ 1:</p>\n                    <p>□ <strong>Trong khu đông dân cư:</strong></p>\n                    <p>Câu hỏi <span class=\"tip-pill\">đường hai chiều</span> có <span class=\"tip-pill\">đến 28 chỗ</span> ⇨ Chọn <span class=\"tip-red\">2</span></p>\n                    <p>Các câu còn lại ⇨ Chọn <span class=\"tip-red\">1</span></p>\n                    <p>□ <strong>Ngoài khu đông dân cư:</strong> <span class=\"tip-pill\">Khẩu quyết: Đôi: 10, hai chiều: 9</span></p>\n                    <p>Đối với dạng câu hỏi XY km/h cuối câu:</p>\n                    <p>✓ Nếu <span class=\"tip-pill\">đường đôi</span> thì lấy <span class=\"tip-red\">10 - X = Đáp án</span></p>\n                    <p>✓ Nếu <span class=\"tip-pill\">đường hai chiều</span> thì lấy <span class=\"tip-red\">9 - X = Đáp án</span></p>\n                    <p>✣ <span class=\"tip-red\"><strong>Chú ý:</strong></span> <span style=\"color:#0073bd\">Xe chở hàng bốn bánh có gắn động cơ</span> được chạy với tốc độ khai thác tối đa cho phép là <span class=\"tip-red\">50 km/h</span>. <span style=\"color:#0073bd\">Xe máy chuyên dùng, xe gắn máy</span> chỉ được chạy <span class=\"tip-red\">40 km/h</span>, không phân biệt trong hay ngoài khu vực đông dân cư.</p>\n                "
+            }
+          ],
+          "exampleQuestions": [
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157
+          ]
+        },
+        {
+          "id": "page-8-tip-12",
+          "text": "MẸO KHOẢNG CÁCH AN TOÀN GIỮA HAI XE",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <p>Trong câu hỏi, nhìn vào <strong>số lớn nhất trên đề:</strong></p>\n                    <p><span class=\"tip-pill\">Lấy vận tốc lớn nhất - 30 = Đáp án và chọn đáp án gần với kết quả nhất</span></p>\n                    <p>Ví dụ: Số lớn nhất là 80: 80 - 30 = 50 ⇨ Chọn đáp án gần kết quả nhất là 55 km/h</p>\n                    <p>☒ Ngoại trừ <span class=\"tip-red\">câu 162</span>: Chủ động giữ khoảng cách an toàn và đảm bảo khoảng cách an toàn</p>\n                "
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                162
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            158,
+            159,
+            160,
+            161
+          ]
+        },
+        {
+          "id": "page-8-tip-13",
+          "text": "MẸO VĂN HÓA GIAO THÔNG",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <p>Trên đề bài có từ <span class=\"tip-pill\">văn hóa giao thông</span> và <span class=\"tip-pill\">tai nạn giao thông</span></p>\n                    <p>☑ <span class=\"tip-red\">Có cả chọn cả</span></p>\n                    <p>☑ <span class=\"tip-red\">Không cả chọn dài</span></p>\n                    <p>☒ Ngoại trừ <span class=\"tip-red\">câu 186</span> và <span class=\"tip-red\">câu 197</span></p>\n                "
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                186,
+                197
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            182,
+            185,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            199,
+            200,
+            205
+          ]
+        },
+        {
+          "id": "page-9-tip-14",
+          "text": "MẸO CHỌN NHANH KỸ THUẬT LÁI XE",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <p><strong>Quy tắc chung:</strong></p>\n                    <p>Người lái xe phải <span class=\"tip-pill\">Quan sát</span> ⇨ <span class=\"tip-pill\">Giảm tốc độ</span> ⇨ <span class=\"tip-pill\">Về số thấp/về số 1</span> ⇨ <span class=\"tip-pill\">Bật đèn chiếu gần</span> ⇨ <span class=\"tip-pill\">Dừng lại nhường đường</span> ⇨ <span class=\"tip-pill\">Giữ vững tay lái, đi đều ga</span> ⇨ <span class=\"tip-pill\">Không tăng số, tăng tốc</span></p>\n                    <p><strong>Trong các trường hợp sau:</strong></p>\n                    <p>☑ <span class=\"tip-red\">Tại các nơi nguy hiểm, đông người</span> (nơi người đi bộ qua đường, giao nhau với đường sắt, bến xe,...)</p>\n                    <p>☑ <span class=\"tip-red\">Tại các cung đường khó đi, tầm nhìn hạn chế</span> (đường hẹp, đường vòng, đường quanh co, đường đèo, dốc, cầu, hầm,...)</p>\n                    <p>☑ <span class=\"tip-red\">Trong điều kiện khắc nghiệt</span> (mưa, gió, sương, khói, bụi, đường trơn trượt,...)</p>\n                "
+            }
+          ],
+          "exampleQuestions": [
+            200,
+            212,
+            213,
+            214,
+            215,
+            217,
+            218,
+            223,
+            224,
+            225,
+            234,
+            235,
+            236,
+            237,
+            240,
+            241,
+            243,
+            244,
+            245,
+            247,
+            248,
+            252,
+            253
+          ]
+        },
+        {
+          "id": "page-9-tip-15",
+          "text": "MẸO CHỌN NHANH CÂU HỎI CÓ SỐ TỰ ĐỘNG",
+          "description": "Khi thấy trong câu hỏi có cụm từ: <span class=\"tip-pill\">Số tự động</span> ⇨ Chọn <span class=\"tip-red\">đáp án 1</span>",
+          "exampleQuestions": [
+            207,
+            237,
+            239,
+            252,
+            290
+          ]
+        },
+        {
+          "id": "page-9-tip-16",
+          "type": "table",
+          "text": "CHỌN NHANH PHẦN CẤU TẠO SỬA CHỮA",
+          "tableTitle": "ĐÁP ÁN CHỨA CHỮ",
+          "rules": [
+            {
+              "question": "Kính chắn gió",
+              "answer": "An toàn, không bị méo mó"
+            },
+            {
+              "question": "Bánh xe, lốp lắp cho ô tô",
+              "answer": "Bánh xe phải có kết cấu chắc chắn\nLốp xe phải đủ số lượng, đủ áp suất"
+            },
+            {
+              "question": "Động cơ diesel không nổ",
+              "answer": "Nhiên liệu lẫn tạp chất"
+            },
+            {
+              "question": "Ống xả",
+              "answer": "Không được đặt ở vị trí có thể gây cháy xe\nMiệng thoát khí không hướng về phía trước và bên phải"
+            },
+            {
+              "question": "Dây đai",
+              "answer": "Giữ chặt"
+            },
+            {
+              "question": "Động cơ 4 kỳ",
+              "answer": "4 hành trình"
+            },
+            {
+              "question": "Hệ thống bôi trơn",
+              "answer": "Giảm ma sát, mài mòn"
+            },
+            {
+              "question": "Động cơ ô tô",
+              "answer": "Nhiệt năng thành cơ năng"
+            },
+            {
+              "question": "Hệ thống truyền lực",
+              "answer": "Truyền mô-men quay"
+            },
+            {
+              "question": "Ly hợp (côn)",
+              "answer": "Truyền hoặc ngắt truyền động"
+            },
+            {
+              "question": "Hộp số",
+              "answer": "Đảm bảo chuyển động lùi"
+            },
+            {
+              "question": "Hệ thống lái",
+              "answer": "Thay đổi hướng chuyển động"
+            },
+            {
+              "question": "Hệ thống phanh",
+              "answer": "Giảm tốc độ, dừng chuyển động"
+            },
+            {
+              "question": "Kiểm tra mức dầu động cơ",
+              "answer": "Lau sạch que thăm"
+            },
+            {
+              "question": "Bộ phận giảm thanh",
+              "answer": "Bắt buộc"
+            },
+            {
+              "question": "Ắc quy",
+              "answer": "Tích trữ điện năng"
+            },
+            {
+              "question": "Máy phát điện",
+              "answer": "Phát điện năng"
+            },
+            {
+              "question": "Túi khí",
+              "answer": "Giảm va đập, hấp thụ một phần lực"
+            },
+            {
+              "question": "Đèn phanh",
+              "answer": "Cảnh báo xe sau (đang giảm tốc)\nĐịnh vị ban đêm"
+            }
+          ],
+          "exampleQuestions": [
+            264,
+            266,
+            268,
+            269,
+            272,
+            273,
+            274,
+            275,
+            276,
+            279,
+            280,
+            281,
+            282,
+            283,
+            284,
+            285,
+            291,
+            292,
+            293,
+            294
+          ]
+        },
+        {
+          "id": "page-10-tip-17",
+          "text": "CÁC BÁO HIỆU TÌNH TRẠNG XE Ô TÔ",
+          "type": "composite",
+          "sections": [
+            {
+              "kind": "statusGrid",
+              "items": [
+                {
+                  "imageName": "1747149125281.png",
+                  "label": "Đang sử dụng phanh đỗ"
+                },
+                {
+                  "imageName": "1747149113683.png",
+                  "label": "Áp suất dầu ở mức thấp"
+                },
+                {
+                  "imageName": "1747150409257.png",
+                  "label": "Cửa xe chưa đóng"
+                },
+                {
+                  "imageName": "1747150563180.png",
+                  "label": "Chưa cài dây an toàn"
+                },
+                {
+                  "imageName": "1747148904266.png",
+                  "label": "Sắp hết nhiên liệu"
+                },
+                {
+                  "imageName": "1747148836987.png",
+                  "label": "Nhiệt độ nước mát quá ngưỡng cho phép"
+                },
+                {
+                  "imageName": "1747148826604.png",
+                  "label": "Cần kiểm tra động cơ"
+                },
+                {
+                  "imageName": "1747148815877.png",
+                  "label": "Áp suất lốp không đủ"
+                },
+                {
+                  "imageName": "1747148800971.png",
+                  "label": "Hệ thống chống bó cứng phanh bị lỗi"
+                },
+                {
+                  "imageName": "1747148771000.png",
+                  "label": "Hệ thống lái gặp sự cố"
+                },
+                {
+                  "imageName": "1747148662427.jpg",
+                  "label": "Xe đang ở tình huống nguy hiểm"
+                },
+                {
+                  "imageName": "1747148580685.jpg",
+                  "label": "Chế độ lái tiết kiệm nhiên liệu đã bật"
+                }
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            227,
+            228,
+            229,
+            230,
+            231,
+            286,
+            287,
+            288,
+            289,
+            295,
+            299,
+            300
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "MẸO BIỂN BÁO CẤM",
+      "color": "#d90404",
+      "tips": [
+        {
+          "id": "intro",
+          "title": "",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <p class=\"tip-subhead\">QUY LUẬT CẤM “NHỎ” - CẤM “LỚN”</p>\n                    <p>Có 2 quy luật cấm:</p>\n                    <p>✓ Cấm xe <span class=\"tip-pill\">nhỏ</span> sẽ đồng thời cấm xe <span class=\"tip-pill\">lớn</span></p>\n                    <p>✓ Cấm xe <span class=\"tip-pill\">lớn</span> thì không cấm xe <span class=\"tip-pill\">nhỏ</span></p>\n                    <p class=\"tip-subhead\">THỨ TỰ CẤM XE TỪ NHỎ ĐẾN LỚN</p>\n                "
+            },
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/thu-tu-cam-xe-tu-nho-den-lon.png"
+            }
+          ],
+          "exampleQuestions": [
+            301,
+            302,
+            303,
+            308,
+            309,
+            310,
+            311,
+            312,
+            340,
+            341,
+            342,
+            343
+          ]
+        },
+        {
+          "id": "tip-1",
+          "title": "MẸO KHI GẶP BIỂN CẤM MÔ TÔ VÀ Ô TÔ ĐI CHUNG",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "<p><span class=\"tip-red\"><strong>Khẩu quyết là:</strong></span> <span class=\"tip-pill\">Cấm 1 được 3</span></p>"
+            },
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/bien-cam-moto-va-oto.png"
+            }
+          ],
+          "exampleQuestions": [
+            304,
+            305,
+            306,
+            307
+          ]
+        },
+        {
+          "id": "tip-2",
+          "title": "GẶP 3 HÌNH TRÒN CẤM RẼ HƯỚNG VÀ QUAY ĐẦU ĐI CHUNG",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "/meo/chuong2-meo2.png"
+            }
+          ],
+          "exampleQuestions": [
+            317,
+            318,
+            319,
+            320
+          ]
+        },
+        {
+          "id": "tip-3",
+          "title": "KHI GẶP CÂU HỎI CÓ TỪ “CẤM Ô TÔ TẢI”, “XE GẮN MÁY”, “XE XÍCH LÔ”",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/nhin-thay-cac-cum-tu.png"
+            },
+            {
+              "kind": "note",
+              "text": "\n                    <p>Trong phần biển báo cấm, trên đề xuất hiện 3 cụm từ: <span class=\"tip-pill\">Cấm ô tô tải</span> <span class=\"tip-pill\">Xe gắn máy</span> <span class=\"tip-pill\">Xe xích lô</span></p>\n                    <p>⇨ Chọn ngay <span class=\"tip-red\">đáp án cuối</span></p>\n                "
+            }
+          ],
+          "exampleQuestions": [
+            302,
+            305,
+            310,
+            311,
+            332,
+            333
+          ]
+        },
+        {
+          "id": "tip-3-exception",
+          "title": "",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "<p>☒ Ngoại trừ <span class=\"tip-red\">câu 301</span> ⇨ Chọn <span class=\"tip-red\">đáp án 1</span></p>"
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                301
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tip-4",
+          "title": "CÂU CÓ TỪ “MOÓC” HOẶC “KÉO”",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/moc-keo.png"
+            }
+          ],
+          "exampleQuestions": [
+            303,
+            340,
+            342,
+            343
+          ]
+        },
+        {
+          "id": "tip-5",
+          "title": "KHI GẶP BIỂN CÓ DẠNG HÌNH LƯỠI MÓC CÂU",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/hinh-dang-luoi-cau.png"
+            }
+          ],
+          "exampleQuestions": [
+            322,
+            323,
+            443
+          ]
+        },
+        {
+          "id": "tip-6",
+          "title": "KHI GẶP BIỂN CÓ DẠNG DẤU TRỪ",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/bien-co-dang-dau-tru.png"
+            }
+          ],
+          "exampleQuestions": [
+            325,
+            326,
+            329
+          ]
+        },
+        {
+          "id": "tip-7",
+          "title": "NGÀY CHẴN, NGÀY LẺ",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/ngay-chan-ngay-le.png"
+            }
+          ],
+          "exampleQuestions": [
+            327,
+            328
+          ]
+        },
+        {
+          "id": "tip-8",
+          "title": "MẸO KHI GẶP BIỂN BÁO PHỤ BÁO HIỆU KHOẢNG CÁCH",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/gap-bien-bao-phu.png"
+            }
+          ],
+          "exampleQuestions": [
+            347,
+            352,
+            353
+          ]
+        },
+        {
+          "id": "tip-9",
+          "title": "PHÂN BIỆT TỐC ĐỘ TỐI ĐA VÀ TỐI THIỂU",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <div class=\"speed-compare\">\n                        <div>\n                            <div class=\"speed-sign speed-max\">50</div>\n                            <p>Hình tròn viền đỏ, có ghi số<br/><span class=\"tip-red\">→ Tốc độ tối đa</span></p>\n                        </div>\n                        <div>\n                            <div class=\"speed-sign speed-min\">60</div>\n                            <p>Hình tròn nền xanh, có ghi số<br/><span class=\"tip-red\">→ Tốc độ tối thiểu</span></p>\n                        </div>\n                    </div>\n                "
+            }
+          ],
+          "exampleQuestions": [
+            335,
+            360,
+            362,
+            364,
+            366
+          ]
+        },
+        {
+          "id": "tip-10",
+          "title": "KHI GẶP 3 HÌNH TRÒN ĐỎ CÓ BIỂN PHỤ ĐI CHUNG",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <div class=\"three-sign-rule\">\n                        <div class=\"red-frame\">\n                            <p><strong>KHI GẶP <span class=\"tip-red\">3 HÌNH TRÒN ĐỎ</span><br/>CÓ BIỂN PHỤ ĐI CHUNG</strong></p>\n                            <div class=\"mini-signs\">\n                                <div><span></span><small>Biển 1</small></div>\n                                <div><span></span><small>Biển 2</small></div>\n                                <div><span></span><small>Biển 3</small></div>\n                            </div>\n                        </div>\n                        <div class=\"choice-lines\">\n                            <p>CÓ TỪ <span class=\"tip-red\">\"HAI BÁNH\"</span> ⇢ <span class=\"choice-pill\">CHỌN 2</span></p>\n                            <p>KHÔNG CÓ TỪ <span class=\"tip-red\">\"HAI BÁNH\"</span> ⇢ <span class=\"choice-pill\">CHỌN 1</span></p>\n                        </div>\n                    </div>\n                "
+            }
+          ],
+          "exampleQuestions": [
+            349,
+            350,
+            351
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "MẸO BIỂN BÁO NGUY HIỂM",
+      "color": "#d5a500",
+      "tips": [
+        {
+          "id": "tip-1",
+          "title": "MẸO BIỂN BÁO NHƯỜNG - CẤM - DÀNH",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/bien-bao-nhuong-cam-danh.png"
+            }
+          ],
+          "exampleQuestions": [
+            367,
+            368,
+            369
+          ]
+        },
+        {
+          "id": "tip-2",
+          "title": "CÂU HỎI VỀ ĐƯỜNG ĐÔI",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/cau-hoi-duong-doi.png"
+            }
+          ],
+          "exampleQuestions": [
+            392,
+            393,
+            394
+          ]
+        },
+        {
+          "id": "tip-3",
+          "title": "PHÂN BIỆT HƯỚNG",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/bien-bao-ke-vuc.png"
+            }
+          ],
+          "exampleQuestions": [
+            403,
+            404,
+            405,
+            470,
+            471,
+            472
+          ]
+        },
+        {
+          "id": "tip-4",
+          "title": "MẸO KHI THẤY BIỂN NGUY HIỂM HÌNH TRẺ EM",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/bien-nguy-hiem-tre-em.png"
+            }
+          ],
+          "exampleQuestions": [
+            411,
+            412,
+            413
+          ]
+        },
+        {
+          "id": "tip-5",
+          "title": "NHẬN BIẾT DỐC LÊN, DỐC XUỐNG",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/meo-nhan-biet-doc-len-xuong.png"
+            }
+          ],
+          "exampleQuestions": [
+            415,
+            416
+          ]
+        },
+        {
+          "id": "tip-6",
+          "title": "CÂU HỎI VỀ GỜ GIẢM TỐC VÀ Ổ GÀ",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/go-giam-toc-o-ga.png"
+            }
+          ],
+          "exampleQuestions": [
+            419,
+            420
+          ]
+        },
+        {
+          "id": "tip-7",
+          "title": "CHỌN NHANH BIỂN BÁO NGUY HIỂM",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/chon-nhanh-bien-bao-nguy-hiem.png"
+            }
+          ],
+          "exampleQuestions": [
+            376,
+            384,
+            385,
+            398,
+            400,
+            401,
+            402,
+            406,
+            407,
+            408,
+            409,
+            410,
+            414,
+            417,
+            418,
+            421,
+            422,
+            423,
+            424,
+            425
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "MẸO BIỂN BÁO CHỈ DẪN BIỂN BÁO HIỆU LỆNH THI HÀNH",
+      "color": "#257ba7",
+      "tips": [
+        {
+          "id": "tip-1",
+          "title": "BIỂN BÁO PHÂN LÀN ĐƯỜNG",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/meo-bien-bao-phan-lan-duong.png"
+            }
+          ],
+          "exampleQuestions": [
+            426,
+            427
+          ]
+        },
+        {
+          "id": "tip-2",
+          "title": "CHỌN NHANH KHI THẤY 2 HOẶC 3 BIỂN HÌNH TRÒN CÓ MŨI TÊN",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/chon-nhanh-hai-ba-hinh-tron.png"
+            }
+          ],
+          "exampleQuestions": [
+            432,
+            440,
+            441,
+            442
+          ]
+        },
+        {
+          "id": "tip-3",
+          "title": "BIỂN BÁO SỐ 50 VÒNG TRÒN XANH",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "/meo/chuong4-meo3.png"
+            }
+          ],
+          "exampleQuestions": [
+            435,
+            436,
+            437,
+            438,
+            439
+          ]
+        },
+        {
+          "id": "tip-4",
+          "title": "KHI GẶP 3 BIỂN BÁO CÓ CHỮ \"ZONE\"",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "/meo/chuong4-meo4.png"
+            }
+          ],
+          "exampleQuestions": [
+            445,
+            446
+          ]
+        },
+        {
+          "id": "tip-5",
+          "title": "NHẬN BIẾT BIỂN BÁO HIỆU LÀN ĐƯỜNG DÀNH CHO Ô TÔ KHÁCH",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/lan-duong-danh-cho-xe-khach.png"
+            }
+          ],
+          "exampleQuestions": [
+            447,
+            448
+          ]
+        },
+        {
+          "id": "tip-6",
+          "title": "PHÂN BIỆT CẦU VƯỢT LIÊN THÔNG, CẦU VƯỢT CẮT QUA",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/meo-qua-cau-vuot-lien-thong.png"
+            }
+          ],
+          "exampleQuestions": [
+            457,
+            458,
+            459
+          ]
+        },
+        {
+          "id": "tip-7",
+          "title": "PHÂN BIỆT BIỂN BÁO NGƯỜI ĐI BỘ SỬ DỤNG CẦU VƯỢT, HẦM CHUI QUA ĐƯỜNG",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/cau-vuot-ham-chui.png"
+            },
+            {
+              "kind": "note",
+              "text": "<p>Nhớ mẹo: <span class=\"tip-red\">LÊN CẦU - XUỐNG HẦM</span></p>"
+            }
+          ],
+          "exampleQuestions": [
+            450,
+            451
+          ]
+        },
+        {
+          "id": "tip-8",
+          "title": "CHỌN NHANH KHI THẤY HÌNH XE Ô TÔ",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/khi-thay-hinh-xe-oto.png"
+            }
+          ],
+          "exampleQuestions": [
+            462,
+            463
+          ]
+        },
+        {
+          "id": "tip-9",
+          "title": "KHI THẤY BIỂN HƯỚNG RẼ PHẢI",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <div class=\"turn-right-rule\">\n                        <div class=\"turn-card\">\n                            <span class=\"turn-sign\"></span>\n                            <p>KHI GẶP BIỂN BÁO<br/><b>HƯỚNG RẼ PHẢI</b></p>\n                        </div>\n                        <div class=\"turn-choice\">LUÔN LUÔN<br/>CHỌN ĐÁP ÁN 2</div>\n                    </div>\n                "
+            }
+          ],
+          "exampleQuestions": [
+            473,
+            474,
+            475
+          ]
+        },
+        {
+          "id": "tip-10",
+          "title": "VẠCH KẺ ĐƯỜNG",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/vach-le-duong.png"
+            }
+          ],
+          "exampleQuestions": [
+            477,
+            478,
+            479,
+            480,
+            481,
+            482,
+            483,
+            484,
+            485
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "MẸO CÂU HỎI SA HÌNH",
+      "color": "#7830bd",
+      "tips": [
+        {
+          "id": "tip-1",
+          "title": "MẸO SA HÌNH CÓ XE CẢNH SÁT",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <div class=\"police-rule\">\n                        <img src=\"https://daotaolaixebd.com/images/meo-sa-hinh-co-xe-canh-sat.png\" alt=\"\" />\n                        <p>Mẹo áp dụng với xe cảnh sát: <span class=\"tip-red\">Quy tắc 1124</span> không thay đổi ⇨ Xe cảnh sát nằm <span class=\"tip-red\">vị trí nào</span> thì <span class=\"tip-red\">chọn đáp án đó</span></p>\n                    </div>\n                "
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                488
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            488,
+            489,
+            501,
+            536,
+            540
+          ]
+        },
+        {
+          "id": "tip-2",
+          "title": "MẸO CÂU HỎI MÀ HÌNH CÓ NHIỀU MŨI TÊN CHỈ NHIỀU HƯỚNG ĐI",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/mui-ten-chi-nhieu-huong-di.png"
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                503,
+                486
+              ]
+            },
+            {
+              "kind": "note",
+              "text": "<p class=\"exception-line\">☒ Ngoại trừ <span class=\"tip-red\">câu 486</span> ⇨ Chọn <span class=\"tip-red\">đáp án 3</span></p>"
+            }
+          ],
+          "exampleQuestions": [
+            503,
+            538,
+            560,
+            561,
+            562,
+            563,
+            565
+          ]
+        },
+        {
+          "id": "tip-3",
+          "title": "CÂU HỎI SA HÌNH XE NÀO ĐƯỢC “ĐI TRƯỚC”",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "<p>Khi gặp câu hỏi xe nào được <span class=\"tip-pill\">đi trước</span> ⇨ Luôn <span class=\"tip-red\">chọn đáp án 2</span></p><p class=\"exception-line\">☒ Ngoại trừ <span class=\"tip-red\">câu 525</span> và <span class=\"tip-red\">câu 591</span> ⇨ Chọn <span class=\"tip-red\">đáp án 1</span></p>"
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                525,
+                591
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            492,
+            495,
+            498,
+            501,
+            506,
+            517,
+            549,
+            588
+          ]
+        },
+        {
+          "id": "tip-4",
+          "title": "MẸO CÂU HỎI CÓ XE CỨU HỎA HOẶC XE QUÂN SỰ",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/co-xe-cuu-thuong.png"
+            },
+            {
+              "kind": "note",
+              "text": "<p>⇨ Chọn luôn <span class=\"tip-red\">đáp án 2</span> khi trong hình có <strong>xe cứu hỏa</strong> hoặc <strong>xe quân sự</strong></p>"
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                494
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            494,
+            498,
+            501,
+            532,
+            540
+          ]
+        },
+        {
+          "id": "tip-5",
+          "title": "MẸO CÂU HỎI XE KÉO XE",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/meo-cau-hoi-keo-xe.png"
+            },
+            {
+              "kind": "note",
+              "text": "<p>Trong hình, thấy xe phía trước kéo xe phía sau ⇨ Chọn đáp án là <span class=\"tip-red\">“Không đúng”</span> hoặc <span class=\"tip-red\">“Vi phạm”</span></p><p><span class=\"tip-red\">*LƯU Ý:</span> Chỉ áp dụng cho phần hình</p>"
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                510
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            510,
+            515,
+            518
+          ]
+        },
+        {
+          "id": "tip-6",
+          "title": "MẸO CÂU HỎI CÓ XE ĐẠP",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/meo-cau-hoi-co-xe-dap.png"
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                572
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            572,
+            574,
+            577,
+            583,
+            593
+          ]
+        },
+        {
+          "id": "tip-7",
+          "title": "MẸO CÂU HỎI MÀ ĐÁP ÁN CÓ NHIỀU CHỮ",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/dap-an-nhieu-chu.png"
+            },
+            {
+              "kind": "note",
+              "text": "\n                    <div class=\"long-answer-rule\">\n                        <p>Khi gặp câu hỏi sa hình mà đáp án có nhiều chữ, chúng ta <span class=\"tip-red\">chọn ngay khi thấy các cụm từ:</span></p>\n                        <ul>\n                            <li>An toàn</li>\n                            <li>Nhường đường</li>\n                            <li>Giảm tốc độ</li>\n                            <li class=\"checked\">Giảm tốc độ nhường đường</li>\n                            <li class=\"checked\">Giảm tốc độ đi sát bên phải</li>\n                        </ul>\n                        <p class=\"exception-line\">☒ Ngoại trừ <span class=\"tip-red\">câu 578</span> ⇨ Chọn <span class=\"tip-red\">đáp án 4</span> (có 4 xe phía trước)</p>\n                    </div>\n                "
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                578
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            544,
+            547,
+            552,
+            564,
+            572,
+            579,
+            580,
+            581,
+            582,
+            590,
+            595,
+            596,
+            600
+          ]
+        },
+        {
+          "id": "tip-8",
+          "title": "MẸO CÂU HỎI SA HÌNH CÓ NHIỀU MŨI TÊN CHỈ CÙNG MỘT HƯỚNG ĐI",
+          "sections": [
+            {
+              "kind": "note",
+              "text": "\n                    <p>□ Đối với câu hỏi <strong>“vi phạm”</strong>, trong hình có nhiều mũi tên chỉ cùng một hướng đi (như thể các xe đang đua):</p>\n                    <p>⇨ Thì nhìn vào xe cuối cùng và chọn: <span class=\"tip-pill\">Số bánh xe của xe cuối - 1 = Đáp án</span></p>\n                    <p>Ví dụ: Trong hình câu 548, xe con 4 bánh đi cuối, nên 4 - 1 = 3 ⇨ Chọn <span class=\"tip-red\">ý 3</span></p>\n                    <p>□ Đối với câu hỏi <strong>“chấp hành”</strong> ⇨ Chọn <span class=\"tip-red\">đáp án 2</span></p>\n                "
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                548
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            543,
+            548,
+            566,
+            554
+          ]
+        },
+        {
+          "id": "tip-9",
+          "title": "MẸO KHI XE CỦA BẠN GẶP BIỂN CẤM DỪNG, CẤM ĐỖ",
+          "sections": [
+            {
+              "kind": "image",
+              "imageUrl": "https://daotaolaixebd.com/images/bien-cam-dung-do.png"
+            },
+            {
+              "kind": "questions",
+              "numbers": [
+                558
+              ]
+            }
+          ],
+          "exampleQuestions": [
+            557,
+            558
+          ]
+        }
+      ]
+    }
+  ]
+}

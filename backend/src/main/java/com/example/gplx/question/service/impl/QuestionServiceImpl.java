@@ -51,6 +51,15 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     @Transactional(readOnly = true)
+    public PracticeQuestionResponse getQuestionByNumber(Integer questionNumber) {
+        Question question = questionRepository.findByQuestionNumber(questionNumber)
+                .orElseThrow(() -> ApiException.notFound("Question not found for number: " + questionNumber));
+        Map<Long, List<AnswerResponse>> answersByQuestionId = getAnswersByQuestionId(List.of(question));
+        return toResponse(question, answersByQuestionId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<PracticeQuestionResponse> getRandomQuestions(int size) {
         Long activeQuestionBankVersionId = questionBankVersionService.getActiveQuestionBankVersion().getId();
         List<Question> questions = questionRepository.findRandomByQuestionBankVersionId(activeQuestionBankVersionId, Pageable.ofSize(size));

@@ -9,6 +9,7 @@ public interface QuestionService {
 
     Page<PracticeQuestionResponse> getQuestions(Long chapterId, Pageable pageable);
     PracticeQuestionResponse getQuestion(Long id);
+    PracticeQuestionResponse getQuestionByNumber(Integer questionNumber);
     List<PracticeQuestionResponse> getRandomQuestions(int size);
     List<PracticeQuestionResponse> getCriticalQuestions();
 }

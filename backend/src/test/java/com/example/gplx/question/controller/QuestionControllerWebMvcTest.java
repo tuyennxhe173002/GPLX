@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.gplx.common.exception.GlobalExceptionHandler;
+import com.example.gplx.auth.security.JwtService;
 import com.example.gplx.question.dto.response.AnswerResponse;
 import com.example.gplx.question.dto.response.PracticeQuestionResponse;
 import com.example.gplx.question.entity.QuestionType;
@@ -30,6 +31,9 @@ class QuestionControllerWebMvcTest {
     @MockBean
     private QuestionService questionService;
 
+    @MockBean
+    private JwtService jwtService;
+
     @Test
     void getQuestionDoesNotLeakAnswerCorrectnessOrExplanation() throws Exception {
         PracticeQuestionResponse response = new PracticeQuestionResponse(
@@ -41,6 +45,7 @@ class QuestionControllerWebMvcTest {
                 null,
                 QuestionType.TEXT,
                 false,
+                "Explanatory text",
                 List.of(
                         new AnswerResponse(201L, "A", "Dap an A", 1),
                         new AnswerResponse(202L, "B", "Dap an B", 2)
@@ -57,6 +62,6 @@ class QuestionControllerWebMvcTest {
                 .andExpect(jsonPath("$.answers[0].isCorrect").doesNotExist())
                 .andExpect(jsonPath("$.answers[0].correct").doesNotExist())
                 .andExpect(jsonPath("$.answers[0].explanation").doesNotExist())
-                .andExpect(jsonPath("$.explanation").doesNotExist());
+                .andExpect(jsonPath("$.explanation").value("Explanatory text"));
     }
 }
