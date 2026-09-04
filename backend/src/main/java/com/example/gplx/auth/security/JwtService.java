@@ -1,7 +1,8 @@
 package com.example.gplx.auth.security;
 
-import com.example.gplx.auth.entity.User;
 import com.example.gplx.common.exception.ApiException;
+import com.example.gplx.user.entity.User;
+import com.example.gplx.user.entity.UserRole;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -9,6 +10,7 @@ import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -29,20 +31,49 @@ public class JwtService {
         this.refreshTokenExpirationSeconds = refreshTokenExpirationSeconds;
     }
 
-    public String generateAccessToken(User user) {
-        return generateToken(user, accessTokenExpirationSeconds, "access");
+    public String generateAccessToken(User user, List<String> permissions) {
+        Instant now = Instant.now();
+        return Jwts.builder()
+                .subject(String.valueOf(user.getId()))
+                .claim("email", user.getEmail())
+                .claim("role", user.getRole().name())
+                .claim("permissions", permissions)
+                .claim("type", "access")
+                .issuedAt(Date.from(now))
+                .expiration(Date.from(now.plusSeconds(accessTokenExpirationSeconds)))
+                .signWith(signingKey)
+                .compact();
     }
 
     public String generateRefreshToken(User user) {
-        return generateToken(user, refreshTokenExpirationSeconds, "refresh");
+        Instant now = Instant.now();
+        return Jwts.builder()
+                .subject(String.valueOf(user.getId()))
+                .claim("email", user.getEmail())
+                .claim("type", "refresh")
+                .issuedAt(Date.from(now))
+                .expiration(Date.from(now.plusSeconds(refreshTokenExpirationSeconds)))
+                .signWith(signingKey)
+                .compact();
     }
 
+    @SuppressWarnings("unchecked")
     public AuthenticatedUser parseAccessToken(String token) {
         Claims claims = parseClaims(token);
         if (!"access".equals(claims.get("type", String.class))) {
             throw ApiException.unauthorized("Invalid access token");
         }
-        return new AuthenticatedUser(Long.valueOf(claims.getSubject()), claims.get("email", String.class));
+
+        Long userId = Long.valueOf(claims.getSubject());
+        String email = claims.get("email", String.class);
+        String roleStr = claims.get("role", String.class);
+        UserRole role = roleStr != null ? UserRole.valueOf(roleStr) : UserRole.STUDENT;
+        List<String> permissions = claims.get("permissions", List.class);
+        if (permissions == null) {
+            permissions = List.of();
+        }
+
+        return new AuthenticatedUser(userId, email, role, permissions);
     }
 
     public Long parseRefreshTokenSubject(String token) {
@@ -57,21 +88,13 @@ public class JwtService {
         return accessTokenExpirationSeconds;
     }
 
-    private String generateToken(User user, long expirationSeconds, String tokenType) {
-        Instant now = Instant.now();
-        return Jwts.builder()
-                .subject(String.valueOf(user.getId()))
-                .claim("email", user.getEmail())
-                .claim("type", tokenType)
-                .issuedAt(Date.from(now))
-                .expiration(Date.from(now.plusSeconds(expirationSeconds)))
-                .signWith(signingKey)
-                .compact();
-    }
-
     private Claims parseClaims(String token) {
         try {
-            return Jwts.parser().verifyWith((javax.crypto.SecretKey) signingKey).build().parseSignedClaims(token).getPayload();
+            return Jwts.parser()
+                    .verifyWith((javax.crypto.SecretKey) signingKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
         } catch (Exception exception) {
             throw ApiException.unauthorized("Invalid or expired token");
         }

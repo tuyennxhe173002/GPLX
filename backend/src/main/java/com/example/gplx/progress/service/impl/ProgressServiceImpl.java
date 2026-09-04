@@ -1,12 +1,17 @@
 package com.example.gplx.progress.service.impl;
 
+import com.example.gplx.exam.entity.ExamSession;
+import com.example.gplx.exam.repository.ExamSessionRepository;
+import com.example.gplx.practice.entity.PracticeAttempt;
+import com.example.gplx.practice.repository.PracticeAttemptRepository;
 import com.example.gplx.progress.dto.response.ChapterProgressResponse;
 import com.example.gplx.progress.dto.response.ProgressSummaryResponse;
+import com.example.gplx.progress.dto.response.UserHistoryResponse;
+import com.example.gplx.progress.dto.response.WrongQuestionDetailResponse;
 import com.example.gplx.progress.entity.UserQuestionProgress;
 import com.example.gplx.progress.repository.UserQuestionProgressRepository;
 import com.example.gplx.progress.service.ProgressService;
 import com.example.gplx.question.dto.response.AnswerResponse;
-import com.example.gplx.question.dto.response.PracticeQuestionResponse;
 import com.example.gplx.question.entity.Answer;
 import com.example.gplx.question.entity.Question;
 import com.example.gplx.question.mapper.QuestionMapper;
@@ -32,6 +37,8 @@ public class ProgressServiceImpl implements ProgressService {
     private final AnswerRepository answerRepository;
     private final QuestionMapper questionMapper;
     private final QuestionBankVersionService questionBankVersionService;
+    private final PracticeAttemptRepository practiceAttemptRepository;
+    private final ExamSessionRepository examSessionRepository;
 
     @Override
     @Transactional
@@ -106,16 +113,74 @@ public class ProgressServiceImpl implements ProgressService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<PracticeQuestionResponse> getWrongQuestions(Long userId) {
+    public List<WrongQuestionDetailResponse> getWrongQuestions(Long userId) {
         Long activeQuestionBankVersionId = questionBankVersionService.getActiveQuestionBankVersion().getId();
-        List<Question> questions = userQuestionProgressRepository.findByUserIdAndWrongAttemptsGreaterThan(userId, 0).stream()
-                .map(UserQuestionProgress::getQuestion)
-                .filter(question -> question.getQuestionBankVersion().getId().equals(activeQuestionBankVersionId))
+        List<UserQuestionProgress> progressList = userQuestionProgressRepository.findByUserIdAndWrongAttemptsGreaterThan(userId, 0).stream()
+                .filter(p -> p.getQuestion().getQuestionBankVersion().getId().equals(activeQuestionBankVersionId))
                 .toList();
+
+        List<Question> questions = progressList.stream().map(UserQuestionProgress::getQuestion).toList();
         Map<Long, List<AnswerResponse>> answersByQuestionId = getAnswersByQuestionId(questions);
-        return questions.stream()
-                .map(question -> questionMapper.toPracticeQuestionResponse(question, answersByQuestionId.getOrDefault(question.getId(), List.of())))
+
+        return progressList.stream()
+                .map(p -> {
+                    Question q = p.getQuestion();
+                    return new WrongQuestionDetailResponse(
+                            q.getId(),
+                            q.getQuestionNumber(),
+                            q.getContent(),
+                            q.getImageUrl(),
+                            q.getQuestionType(),
+                            q.getIsCritical(),
+                            q.getHasAnimation(),
+                            q.getChapter().getId(),
+                            q.getChapter().getCode(),
+                            p.getWrongAttempts(),
+                            p.getCorrectAttempts(),
+                            p.getTotalAttempts(),
+                            p.getLastCorrect(),
+                            p.getUpdatedAt(),
+                            answersByQuestionId.getOrDefault(q.getId(), List.of())
+                    );
+                })
                 .toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserHistoryResponse getUserHistory(Long userId) {
+        List<PracticeAttempt> attempts = practiceAttemptRepository.findTop50ByUserIdOrderByCreatedAtDesc(userId);
+        List<ExamSession> examSessions = examSessionRepository.findTop20ByUserIdOrderByStartedAtDesc(userId);
+
+        List<UserHistoryResponse.PracticeHistoryItem> practiceItems = attempts.stream()
+                .map(a -> new UserHistoryResponse.PracticeHistoryItem(
+                        a.getId(),
+                        a.getQuestion().getId(),
+                        a.getQuestion().getQuestionNumber(),
+                        a.getQuestion().getContent(),
+                        a.getSelectedAnswer().getId(),
+                        a.getSelectedAnswer().getContent(),
+                        a.isCorrect(),
+                        a.getCreatedAt()
+                ))
+                .toList();
+
+        List<UserHistoryResponse.ExamHistoryItem> examItems = examSessions.stream()
+                .map(e -> new UserHistoryResponse.ExamHistoryItem(
+                        e.getId(),
+                        e.getLicenseType(),
+                        e.getTotalQuestions(),
+                        e.getCorrectCount(),
+                        e.getWrongCount(),
+                        e.getCriticalWrongCount(),
+                        e.getPassed(),
+                        e.getState().name(),
+                        e.getStartedAt(),
+                        e.getFinishedAt()
+                ))
+                .toList();
+
+        return new UserHistoryResponse(practiceItems, examItems);
     }
 
     private Map<Long, List<AnswerResponse>> getAnswersByQuestionId(List<Question> questions) {

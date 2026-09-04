@@ -4,8 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getQuestions } from "../../questions/api/questionApi";
 import type { PracticeQuestion } from "../../questions/types/question";
 import { LICENSE_CONFIGS, getExamQuestionNumbers } from "../data/examRules";
-import { SaHinhRealistic3DPlayer } from "../../practice/components/SaHinhRealistic3DPlayer";
-import { getSaHinhSimulation } from "../../practice/data/saHinhSimulationData";
 
 function formatTimer(seconds: number): string {
   const mins = Math.floor(seconds / 60);
@@ -138,15 +136,6 @@ export function ExamRunnerView() {
 
   const currentQuestion: PracticeQuestion | undefined = examQuestions[currentIndex];
   const answeredCount = Object.keys(selectedAnswers).length;
-
-  const saHinhSim = useMemo(() => {
-    if (!currentQuestion) return null;
-    return getSaHinhSimulation(
-      currentQuestion.questionNumber,
-      currentQuestion.content,
-      currentQuestion.explanation
-    );
-  }, [currentQuestion]);
 
   if (allQuestionsQuery.isLoading) {
     return (
@@ -303,17 +292,6 @@ export function ExamRunnerView() {
                     <p className="text-slate-700 font-medium leading-relaxed">
                       {currentQuestion.explanation || "Đáp án chuẩn theo bộ quy tắc giao thông đường bộ."}
                     </p>
-
-                    {/* 3D Animated Sa Hình Simulation Player */}
-                    {saHinhSim ? (
-                      <div className="pt-3 border-t border-blue-200/60">
-                        <SaHinhRealistic3DPlayer
-                          questionNumber={currentQuestion.questionNumber}
-                          content={currentQuestion.content}
-                          explanation={currentQuestion.explanation}
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </div>

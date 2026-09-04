@@ -3,8 +3,9 @@ package com.example.gplx.progress.controller;
 import com.example.gplx.auth.service.CurrentUserService;
 import com.example.gplx.progress.dto.response.ChapterProgressResponse;
 import com.example.gplx.progress.dto.response.ProgressSummaryResponse;
+import com.example.gplx.progress.dto.response.UserHistoryResponse;
+import com.example.gplx.progress.dto.response.WrongQuestionDetailResponse;
 import com.example.gplx.progress.service.ProgressService;
-import com.example.gplx.question.dto.response.PracticeQuestionResponse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,12 @@ public class ProgressController {
     }
 
     @GetMapping("/wrong-questions")
-    public List<PracticeQuestionResponse> getWrongQuestions() {
+    public List<WrongQuestionDetailResponse> getWrongQuestions() {
         return progressService.getWrongQuestions(currentUserService.requireCurrentUserId());
+    }
+
+    @GetMapping("/history")
+    public UserHistoryResponse getUserHistory() {
+        return progressService.getUserHistory(currentUserService.requireCurrentUserId());
     }
 }

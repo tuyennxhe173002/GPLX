@@ -5,8 +5,9 @@ import { getQuestions } from "../../questions/api/questionApi";
 import { submitPracticeAnswer } from "../api/practiceApi";
 import type { PracticeQuestion } from "../../questions/types/question";
 import type { PracticeAnswerResult } from "../types/practice";
-import { SaHinhRealistic3DPlayer } from "./SaHinhRealistic3DPlayer";
-import { getSaHinhSimulation } from "../data/saHinhSimulationData";
+import { ExplanationVideo } from "../../explanation-video/components/ExplanationVideo";
+import { AdminVideoInlineEditor } from "../../explanation-video/components/AdminVideoInlineEditor";
+import { useAuth } from "../../auth/hooks/useAuth";
 
 type AnsweredState = {
   selectedAnswerId: number;
@@ -35,6 +36,7 @@ function saveProgress(progress: Record<number, AnsweredState>) {
 }
 
 export function ChapterPracticeView() {
+  const { role, can } = useAuth();
   const [selectedChapterId, setSelectedChapterId] = useState<number | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [mode, setMode] = useState<"study" | "exam">("study"); // "study" = hiện giải thích ngay, "exam" = tự do
@@ -123,15 +125,6 @@ export function ChapterPracticeView() {
     ? userProgress[currentQuestion.id]
     : undefined;
 
-  const saHinhSim = useMemo(() => {
-    if (!currentQuestion) return null;
-    return getSaHinhSimulation(
-      currentQuestion.questionNumber,
-      currentQuestion.content,
-      currentAnsweredState?.explanation || currentQuestion.explanation
-    );
-  }, [currentQuestion, currentAnsweredState]);
-
   return (
     <div className="space-y-6 pb-16">
       {/* Top Header */}
@@ -183,11 +176,10 @@ export function ChapterPracticeView() {
                     key={ch.id}
                     type="button"
                     onClick={() => handleSelectChapter(ch.id)}
-                    className={`w-full rounded-2xl p-3.5 text-left text-xs sm:text-sm font-bold transition-all ${
-                      isActive
+                    className={`w-full rounded-2xl p-3.5 text-left text-xs sm:text-sm font-bold transition-all ${isActive
                         ? "border-2 border-amber-500 bg-amber-50/60 text-amber-950 shadow-sm"
                         : "border border-transparent bg-slate-50 text-slate-700 hover:bg-slate-100"
-                    }`}
+                      }`}
                   >
                     Chương {idx + 1}
                   </button>
@@ -220,6 +212,7 @@ export function ChapterPracticeView() {
                     <img
                       src={currentQuestion.imageUrl}
                       alt={`Hình minh họa câu ${currentIndex + 1}`}
+                      onError={(e) => (e.currentTarget.parentElement!.style.display = "none")}
                       className="max-h-72 rounded-xl object-contain mx-auto"
                     />
                   </div>
@@ -268,17 +261,6 @@ export function ChapterPracticeView() {
                     );
                   })}
                 </div>
-
-                {/* 3D Animated Sa Hình Movement Simulation Player (Appears directly below choices ONLY AFTER clicking an answer) */}
-                {currentAnsweredState && saHinhSim ? (
-                  <div className="pt-4 border-t border-slate-100">
-                    <SaHinhRealistic3DPlayer
-                      questionNumber={currentQuestion.questionNumber}
-                      content={currentQuestion.content}
-                      explanation={currentAnsweredState.explanation || currentQuestion.explanation}
-                    />
-                  </div>
-                ) : null}
               </div>
 
               {/* Bottom Navigation Buttons */}
@@ -317,17 +299,25 @@ export function ChapterPracticeView() {
               <div className="space-y-3 text-xs sm:text-sm">
                 <p className="font-bold text-[#003466]">
                   Đáp án đúng:{" "}
-                  <span className="underline">
+                  <span className="underline font-black text-emerald-700">
                     {currentAnsweredState.correctAnswerIds
                       ?.map((id) => currentQuestion?.answers.find((a) => a.id === id)?.content || id)
                       .join(", ")}
                   </span>
                 </p>
-                <p className="text-slate-700 leading-relaxed font-medium">
-                  {currentAnsweredState.explanation ||
+                <p className="text-slate-700 leading-relaxed font-medium whitespace-pre-line">
+                  {(currentAnsweredState.explanation ||
                     currentQuestion?.explanation ||
-                    "Chọn đáp án đúng theo quy tắc hướng dẫn trên."}
+                    "Chọn đáp án đúng theo quy tắc hướng dẫn trên.").replace(/\\n/g, "\n")}
                 </p>
+
+                {/* Video mô phỏng sa hình nhúng từ Google Drive */}
+                {currentQuestion && (
+                  <ExplanationVideo
+                    questionId={currentQuestion.id}
+                    questionNumber={currentIndex + 1}
+                  />
+                )}
               </div>
             ) : (
               <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed">
@@ -335,6 +325,15 @@ export function ChapterPracticeView() {
               </p>
             )}
           </div>
+
+          {/* Card Admin: Gán link video Google Drive */}
+          {currentQuestion && (role === "ADMIN" || can("VIDEO_CREATE") || can("VIDEO_UPDATE")) && (
+            <AdminVideoInlineEditor
+              questionId={currentQuestion.id}
+              questionNumber={currentIndex + 1}
+              chapterTitle={currentChapter?.name}
+            />
+          )}
 
           {/* Card 2: Question Matrix Grid */}
           <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm space-y-4">
@@ -391,11 +390,10 @@ export function ChapterPracticeView() {
                   setMode("study");
                   setShowModeModal(false);
                 }}
-                className={`w-full rounded-2xl border p-4 text-left font-bold text-xs sm:text-sm transition ${
-                  mode === "study"
+                className={`w-full rounded-2xl border p-4 text-left font-bold text-xs sm:text-sm transition ${mode === "study"
                     ? "border-[#003466] bg-[#003466] text-white"
                     : "border-slate-200 bg-white text-slate-800 hover:bg-slate-50"
-                }`}
+                  }`}
               >
                 Chế độ Ôn tập (Hiện ngay giải thích & đáp án)
               </button>
@@ -405,11 +403,10 @@ export function ChapterPracticeView() {
                   setMode("exam");
                   setShowModeModal(false);
                 }}
-                className={`w-full rounded-2xl border p-4 text-left font-bold text-xs sm:text-sm transition ${
-                  mode === "exam"
+                className={`w-full rounded-2xl border p-4 text-left font-bold text-xs sm:text-sm transition ${mode === "exam"
                     ? "border-[#003466] bg-[#003466] text-white"
                     : "border-slate-200 bg-white text-slate-800 hover:bg-slate-50"
-                }`}
+                  }`}
               >
                 Chế độ Tự luyện / Thi thử (Không hiện giải thích lập tức)
               </button>

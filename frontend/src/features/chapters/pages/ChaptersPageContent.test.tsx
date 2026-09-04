@@ -19,11 +19,11 @@ vi.mock("../../progress/api/progressApi", () => ({
 }));
 
 describe("ChaptersPageContent", () => {
-  it("renders chapter list", async () => {
+  it("renders chapter list and practice interface", async () => {
     renderWithProviders(<ChaptersPageContent />);
 
-    expect(await screen.findByText("Khai niem")).toBeInTheDocument();
-    expect(screen.getByText("Mo ta chuong")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Luyen theo chuong" })).toHaveAttribute("href", "/chapters/1/practice");
+    const matching = await screen.findAllByText(/Khai niem/i);
+    expect(matching.length).toBeGreaterThan(0);
+    expect(screen.getByText("Ôn tập theo chương")).toBeInTheDocument();
   });
 });

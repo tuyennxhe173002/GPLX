@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -27,6 +28,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -48,8 +50,29 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/api/health").permitAll()
-                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        // Public auth
+                        .requestMatchers(
+                                "/api/v1/auth/login",
+                                "/api/v1/auth/register",
+                                "/api/v1/auth/refresh",
+                                "/api/v1/auth/forgot-password",
+                                "/api/v1/auth/reset-password"
+                        ).permitAll()
+                        // Authenticated auth
+                        .requestMatchers(
+                                "/api/v1/auth/me",
+                                "/api/v1/auth/password"
+                        ).authenticated()
+                        // Public learning / practice / exam endpoints
+                        .requestMatchers(HttpMethod.GET, "/api/v1/chapters/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/questions/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/practice/**").permitAll()
+                        .requestMatchers("/api/v1/exams/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/questions/*/explanation-video").permitAll()
+                        // Authenticated user learning state
                         .requestMatchers("/api/v1/me/**").authenticated()
+                        // Admin and authority protected APIs
+                        .requestMatchers("/api/v1/admin/**").authenticated()
                         .anyRequest().permitAll())
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(authenticationEntryPoint())

@@ -5,6 +5,9 @@ import { getCriticalQuestions } from "../../questions/api/questionApi";
 import { submitPracticeAnswer } from "../api/practiceApi";
 import type { PracticeQuestion } from "../../questions/types/question";
 import type { PracticeAnswerResult } from "../types/practice";
+import { ExplanationVideo } from "../../explanation-video/components/ExplanationVideo";
+import { AdminVideoInlineEditor } from "../../explanation-video/components/AdminVideoInlineEditor";
+import { useAuth } from "../../auth/hooks/useAuth";
 
 type AnsweredState = {
   selectedAnswerId: number;
@@ -33,6 +36,7 @@ function saveProgress(progress: Record<number, AnsweredState>) {
 }
 
 export function CriticalPracticeView() {
+  const { role, can } = useAuth();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [mode, setMode] = useState<"study" | "exam">("study");
   const [showModeModal, setShowModeModal] = useState<boolean>(false);
@@ -271,20 +275,28 @@ export function CriticalPracticeView() {
             </h2>
 
             {currentAnsweredState && mode === "study" ? (
-              <div className="space-y-2 text-xs sm:text-sm">
+              <div className="space-y-3 text-xs sm:text-sm">
                 <p className="font-bold text-[#003466]">
                   Đáp án đúng:{" "}
-                  <span className="underline">
+                  <span className="underline font-black text-emerald-700">
                     {currentAnsweredState.correctAnswerIds
                       ?.map((id) => currentQuestion?.answers.find((a) => a.id === id)?.content || id)
                       .join(", ")}
                   </span>
                 </p>
-                <p className="text-slate-700 leading-relaxed font-medium">
-                  {currentAnsweredState.explanation ||
+                <p className="text-slate-700 leading-relaxed font-medium whitespace-pre-line">
+                  {(currentAnsweredState.explanation ||
                     currentQuestion?.explanation ||
-                    "Câu hỏi điểm liệt bắt buộc phải nhớ đáp án chuẩn."}
+                    "Câu hỏi điểm liệt bắt buộc phải nhớ đáp án chuẩn.").replace(/\\n/g, "\n")}
                 </p>
+
+                {/* Video mô phỏng */}
+                {currentQuestion && (
+                  <ExplanationVideo
+                    questionId={currentQuestion.id}
+                    questionNumber={currentIndex + 1}
+                  />
+                )}
               </div>
             ) : (
               <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed">
@@ -292,6 +304,15 @@ export function CriticalPracticeView() {
               </p>
             )}
           </div>
+
+          {/* Card Admin: Gán link video Google Drive */}
+          {currentQuestion && (role === "ADMIN" || can("VIDEO_CREATE") || can("VIDEO_UPDATE")) && (
+            <AdminVideoInlineEditor
+              questionId={currentQuestion.id}
+              questionNumber={currentIndex + 1}
+              chapterTitle="Câu điểm liệt"
+            />
+          )}
 
           {/* Card 2: Question Matrix Grid */}
           <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm space-y-4">

@@ -51,6 +51,7 @@ public class ExamServiceImpl implements ExamService {
     private final QuestionMapper questionMapper;
     private final ExamMapper examMapper;
     private final QuestionBankVersionService questionBankVersionService;
+    private final com.example.gplx.auth.service.CurrentUserService currentUserService;
 
     @Override
     @Transactional(readOnly = true)
@@ -91,6 +92,7 @@ public class ExamServiceImpl implements ExamService {
         List<Question> selectedQuestions = buildExamQuestionSet(profile, allQuestions, criticalQuestions);
 
         ExamSession session = new ExamSession();
+        session.setUserId(currentUserService.getCurrentUserIdOrNull());
         session.setLicenseExamProfile(profile);
         session.setLicenseType(profile.getProfileCode());
         session.setTotalQuestions(profile.getQuestionCount());

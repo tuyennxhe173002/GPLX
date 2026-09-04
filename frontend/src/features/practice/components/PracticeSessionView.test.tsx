@@ -70,18 +70,18 @@ describe("PracticeSessionView", () => {
       />,
     );
 
-    expect(screen.queryByText("Loi giai")).not.toBeInTheDocument();
+    expect(screen.queryByText("Giải thích chi tiết")).not.toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /Dap an A/i }));
     await user.click(screen.getByRole("button", { name: "Tra loi" }));
 
-    expect(await screen.findByText("Loi giai")).toBeInTheDocument();
+    expect(await screen.findByText("Giải thích chi tiết")).toBeInTheDocument();
     expect(screen.getByText("Giai thich cho cau hoi")).toBeInTheDocument();
-    expect(await screen.findByText("Du lieu animation explanation")).toBeInTheDocument();
-    expect(screen.getByText(/Duration: 1500ms/)).toBeInTheDocument();
+    expect(await screen.findByText("Hình ảnh / Animation giải thích")).toBeInTheDocument();
+    expect(screen.getByText(/Thời lượng: 1500ms/)).toBeInTheDocument();
 
     await waitFor(() => {
-      expect(screen.getByText(/Tra loi dung/)).toBeInTheDocument();
+      expect(screen.getByText(/Trả lời đúng/)).toBeInTheDocument();
     });
   });
 });

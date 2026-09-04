@@ -14,6 +14,7 @@ export type PracticeQuestion = {
   imageUrl: string | null;
   questionType: "TEXT" | "IMAGE" | "TRAFFIC_SCENE" | "SIGN";
   isCritical: boolean;
+  hasAnimation?: boolean;
   explanation?: string | null;
   answers: Answer[];
 };

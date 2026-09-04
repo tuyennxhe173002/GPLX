@@ -66,6 +66,9 @@ public class DataImportServiceImpl implements DataImportService {
         QuestionBankVersion questionBankVersion = resolveQuestionBankVersion(manifest);
         long currentQuestions = questionRepository.countByQuestionBankVersion_Id(questionBankVersion.getId());
         if (currentQuestions > 0) {
+            Map<Integer, Question> questionByNumber = questionRepository.findByQuestionBankVersion_IdOrderByQuestionNumberAsc(questionBankVersion.getId())
+                    .stream().collect(Collectors.toMap(Question::getQuestionNumber, q -> q));
+            importAnimations(animations, questionByNumber);
             return;
         }
 
@@ -295,7 +298,18 @@ public class DataImportServiceImpl implements DataImportService {
             if (question == null) {
                 throw new IllegalStateException("Animation references unknown questionNumber: " + dto.questionNumber());
             }
-            animationRepository.save(seedImportMapper.toEntity(dto, question));
+            com.example.gplx.animation.entity.ExplanationAnimation existing = animationRepository.findByQuestion_Id(question.getId()).orElse(null);
+            if (existing != null) {
+                existing.setSceneWidth(dto.sceneWidth());
+                existing.setSceneHeight(dto.sceneHeight());
+                existing.setBackgroundImageUrl(trimToNull(dto.backgroundImageUrl()));
+                existing.setDurationMs(dto.durationMs());
+                existing.setAnimationData(dto.animationData());
+                existing.setUpdatedAt(java.time.Instant.now());
+                animationRepository.save(existing);
+            } else {
+                animationRepository.save(seedImportMapper.toEntity(dto, question));
+            }
         }
     }
 

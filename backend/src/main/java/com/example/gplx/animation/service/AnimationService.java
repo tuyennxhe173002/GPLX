@@ -5,4 +5,6 @@ import com.example.gplx.animation.dto.response.AnimationResponse;
 public interface AnimationService {
 
     AnimationResponse getPracticeAttemptAnimation(Long attemptId);
+
+    AnimationResponse getQuestionAnimation(Long questionId);
 }

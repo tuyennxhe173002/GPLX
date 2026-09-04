@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPracticeAttemptAnimation } from "../api/practiceApi";
 import type { PracticeAnswerResult } from "../types/practice";
+import { ExplanationVideo } from "../../explanation-video/components/ExplanationVideo";
 
 type ExplanationPanelProps = {
   result: PracticeAnswerResult;
@@ -9,12 +10,13 @@ type ExplanationPanelProps = {
 export function ExplanationPanel({ result }: ExplanationPanelProps) {
   const animationQuery = useQuery({
     queryKey: ["practice-animation", result.animation.attemptId],
-    queryFn: () => getPracticeAttemptAnimation(result.animation.attemptId),
-    enabled: result.animation.available,
+    queryFn: () => getPracticeAttemptAnimation(result.animation.attemptId!),
+    enabled: Boolean(result.animation.available && result.animation.attemptId),
   });
 
   return (
     <section className="space-y-4 rounded-3xl border border-blue-100 bg-blue-50/50 p-6 shadow-sm">
+      {/* Header status bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-blue-100 pb-3">
         <div className="flex items-center gap-2">
           <span
@@ -44,6 +46,7 @@ export function ExplanationPanel({ result }: ExplanationPanelProps) {
         </span>
       </div>
 
+      {/* Explanation text */}
       <div>
         <h3 className="flex items-center gap-2 text-base font-bold text-[#003466]">
           <svg className="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
@@ -56,6 +59,10 @@ export function ExplanationPanel({ result }: ExplanationPanelProps) {
         </p>
       </div>
 
+      {/* Video giải thích qua Google Drive */}
+      <ExplanationVideo questionId={result.questionId} questionNumber={0} />
+
+      {/* Animation explanation image (if provided by backend) */}
       {result.animation.available ? (
         <div className="rounded-2xl border border-slate-200 bg-white p-4">
           <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Hình ảnh / Animation giải thích</h4>
@@ -85,4 +92,3 @@ export function ExplanationPanel({ result }: ExplanationPanelProps) {
     </section>
   );
 }
-

@@ -9,14 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/practice/attempts")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class AnimationController {
 
     private final AnimationService animationService;
 
-    @GetMapping("/{attemptId}/animation")
+    @GetMapping("/practice/attempts/{attemptId}/animation")
     public AnimationResponse getPracticeAttemptAnimation(@PathVariable Long attemptId) {
         return animationService.getPracticeAttemptAnimation(attemptId);
+    }
+
+    @GetMapping("/animations/questions/{questionId}")
+    public AnimationResponse getQuestionAnimation(@PathVariable Long questionId) {
+        return animationService.getQuestionAnimation(questionId);
     }
 }

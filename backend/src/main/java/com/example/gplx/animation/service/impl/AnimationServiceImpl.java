@@ -37,4 +37,21 @@ public class AnimationServiceImpl implements AnimationService {
                 animation.getAnimationData()
         );
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AnimationResponse getQuestionAnimation(Long questionId) {
+        ExplanationAnimation animation = explanationAnimationRepository.findByQuestion_Id(questionId)
+                .orElseThrow(() -> ApiException.notFound("Animation not found for question " + questionId));
+
+        return new AnimationResponse(
+                animation.getId(),
+                animation.getQuestion().getId(),
+                animation.getSceneWidth(),
+                animation.getSceneHeight(),
+                animation.getBackgroundImageUrl(),
+                animation.getDurationMs(),
+                animation.getAnimationData()
+        );
+    }
 }

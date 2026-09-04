@@ -2,10 +2,18 @@ const ACCESS_TOKEN_KEY = "gplx_access_token";
 const REFRESH_TOKEN_KEY = "gplx_refresh_token";
 const AUTH_USER_KEY = "gplx_auth_user";
 
+export type UserRole = "ADMIN" | "TEACHER" | "STUDENT";
+
 export type AuthUser = {
   id: number;
   email: string;
   fullName: string;
+  role?: UserRole;
+  status?: "ACTIVE" | "DISABLED" | "LOCKED";
+  mustChangePassword?: boolean;
+  permissions?: string[];
+  lastLoginAt?: string;
+  createdAt?: string;
 };
 
 export type StoredAuthSession = {
@@ -38,7 +46,7 @@ export function setRefreshToken(token: string | null) {
   window.localStorage.removeItem(REFRESH_TOKEN_KEY);
 }
 
-export function getStoredAuthUser() {
+export function getStoredAuthUser(): AuthUser | null {
   const raw = window.localStorage.getItem(AUTH_USER_KEY);
 
   if (!raw) {
