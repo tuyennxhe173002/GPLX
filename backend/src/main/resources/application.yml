@@ -1,8 +1,6 @@
 spring:
   application:
     name: gplx
-  profiles:
-    default: local
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
   datasource:
@@ -18,11 +16,11 @@ spring:
     locations: classpath:db/migration
 
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${PORT:${SERVER_PORT:8080}}
 
 app:
   cors:
-    allowed-origin: ${APP_CORS_ALLOWED_ORIGIN:http://localhost:5173}
+    allowed-origin: ${APP_CORS_ALLOWED_ORIGIN:*}
   auth:
     jwt-secret: ${APP_AUTH_JWT_SECRET:U29tZVN1cGVyU2VjcmV0S2V5Rm9yR1BMWFN1cGVyU2VjcmV0S2V5MTIzNDU2Nzg=}
     access-token-expiration-seconds: ${APP_AUTH_ACCESS_TOKEN_EXPIRATION_SECONDS:3600}
@@ -32,6 +30,6 @@ app:
     initial-password: ${APP_ADMIN_INITIAL_PASSWORD:Admin@123456}
     full-name: ${APP_ADMIN_FULL_NAME:Quản Trị Viên}
   seed:
-    enabled: ${APP_SEED_ENABLED:false}
+    enabled: ${APP_SEED_ENABLED:true}
     location: ${APP_SEED_LOCATION:data}
     validation-mode: ${APP_SEED_VALIDATION_MODE:PARTIAL}

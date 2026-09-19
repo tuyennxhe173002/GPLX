@@ -1,12 +1,15 @@
 spring:
+  config:
+    activate:
+      on-profile: local
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5433/gplx
-    username: gplx
-    password: gplx
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5433/gplx}
+    username: ${SPRING_DATASOURCE_USERNAME:gplx}
+    password: ${SPRING_DATASOURCE_PASSWORD:gplx}
 
 server:
-  port: ${SERVER_PORT:8081}
+  port: ${SERVER_PORT:8080}
 
 app:
   cors:
-    allowed-origin: http://localhost:5173
+    allowed-origin: ${APP_CORS_ALLOWED_ORIGIN:http://localhost:5173}
