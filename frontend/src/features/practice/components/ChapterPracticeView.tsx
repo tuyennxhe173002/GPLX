@@ -169,31 +169,68 @@ export function ChapterPracticeView() {
             </h2>
 
             <div className="space-y-2">
-              {chapters.map((ch, idx) => {
-                const isActive = ch.id === activeChapterId;
-                return (
+              {chaptersQuery.isLoading ? (
+                <div className="py-6 text-center text-xs font-semibold text-slate-500 space-y-2">
+                  <div className="h-5 w-5 mx-auto border-2 border-slate-400 border-t-transparent rounded-full animate-spin"></div>
+                  <p>Đang tải danh mục chương...</p>
+                </div>
+              ) : chaptersQuery.isError ? (
+                <div className="rounded-2xl border border-red-200 bg-red-50 p-3 text-center text-xs text-red-700 space-y-2">
+                  <p className="font-bold">Không tải được chương</p>
                   <button
-                    key={ch.id}
                     type="button"
-                    onClick={() => handleSelectChapter(ch.id)}
-                    className={`w-full rounded-2xl p-3.5 text-left text-xs sm:text-sm font-bold transition-all ${isActive
-                        ? "border-2 border-amber-500 bg-amber-50/60 text-amber-950 shadow-sm"
-                        : "border border-transparent bg-slate-50 text-slate-700 hover:bg-slate-100"
-                      }`}
+                    onClick={() => chaptersQuery.refetch()}
+                    className="rounded-lg bg-red-600 px-3 py-1 text-[11px] font-bold text-white hover:bg-red-700"
                   >
-                    Chương {idx + 1}
+                    Thử lại
                   </button>
-                );
-              })}
+                </div>
+              ) : (
+                chapters.map((ch, idx) => {
+                  const isActive = ch.id === activeChapterId;
+                  return (
+                    <button
+                      key={ch.id}
+                      type="button"
+                      onClick={() => handleSelectChapter(ch.id)}
+                      className={`w-full rounded-2xl p-3.5 text-left text-xs sm:text-sm font-bold transition-all ${
+                        isActive
+                          ? "border-2 border-amber-500 bg-amber-50/60 text-amber-950 shadow-sm"
+                          : "border border-transparent bg-slate-50 text-slate-700 hover:bg-slate-100"
+                      }`}
+                    >
+                      Chương {idx + 1}
+                    </button>
+                  );
+                })
+              )}
             </div>
           </div>
         </aside>
 
         {/* Center Column: Question Card & Nav (6 cols) */}
         <main className="lg:col-span-6 space-y-4">
-          {questionsQuery.isLoading ? (
-            <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center text-sm font-bold text-slate-500">
-              Đang tải danh sách câu hỏi...
+          {chaptersQuery.isLoading || questionsQuery.isLoading ? (
+            <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center text-sm font-bold text-slate-600 space-y-3 shadow-sm">
+              <div className="h-8 w-8 mx-auto border-4 border-[#003466] border-t-transparent rounded-full animate-spin"></div>
+              <p>Đang tải dữ liệu câu hỏi...</p>
+              <p className="text-xs font-medium text-slate-400">
+                (Máy chủ Render có thể mất vài giây để khởi động lại nếu vừa ở trạng thái nghỉ)
+              </p>
+            </div>
+          ) : chaptersQuery.isError || questionsQuery.isError ? (
+            <div className="rounded-3xl border border-red-200 bg-red-50 p-8 text-center text-sm font-bold text-red-700 space-y-3 shadow-sm">
+              <p>Không thể kết nối đến máy chủ backend.</p>
+              <button
+                type="button"
+                onClick={() => {
+                  chaptersQuery.refetch();
+                  questionsQuery.refetch();
+                }}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-[#003466] px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-[#00254a]"
+              >
+                Tải lại dữ liệu
+              </button>
             </div>
           ) : questions.length === 0 ? (
             <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center text-sm font-bold text-slate-500">
